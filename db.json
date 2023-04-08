@@ -1,0 +1,89 @@
+{
+  "memes": [
+    {
+			"id": 1,
+			"userId": 1,
+			"author": "Адольф",
+			"name": "Дверь мне запилил",
+			"image": "https://kartinkof.club/uploads/posts/2022-06/1656064393_21-kartinkof-club-p-kartinki-s-nadpisyu-chet-ya-ochkuyu-slavik-21.jpg",
+			"video": "https://youtu.be/WnhjDV5ZUL0"
+		},
+    {
+			"id": 2,
+			"userId": 2,
+			"author": "Анатолий",
+			"name": "Капибара, капибара, капибара",
+			"image": "https://kartinkin.net/pics/uploads/posts/2022-06/1656189086_6-kartinkin-net-p-kapibara-i-morskaya-svinka-art-krasivo-16.jpg",
+			"video": "https://youtu.be/3axFC8wYjB8"
+		},
+    {
+			"id": 3,
+			"userId": 3,
+			"author": "Аркадий",
+			"name": "Стартуем! Наталья морская пехота!",
+			"image": "https://i.ytimg.com/vi/qsHeemDhubo/maxresdefault.jpg",
+			"video": "https://youtu.be/pWJOxvcp7xk"
+		},
+    {
+			"id": 4,
+			"userId": 4,
+			"author": "Валера",
+			"name": "Обращение к шароёбам",
+			"image": "https://i.ytimg.com/vi/FIE84TeDOK8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgYSg_MA8=&amp;rs=AOn4CLC4QLs5_GfgX9Yyj-UahTjwc-mmSA",
+			"video": "https://vk.com/video260459317_456239163"
+		},
+    {
+			"id": 5,
+			"userId": 5,
+			"author": "Нурлан",
+			"name": "Кот Киселек",
+			"image": "https://i.ytimg.com/vi/vHFwHDRFiN0/maxresdefault.jpg",
+			"video": "https://youtu.be/HTm3OHyMjhQ"
+		},
+    {
+			"id": 6,
+			"userId": 6,
+			"author": "Ярик",
+			"name": "ЯРИК БОЧОК ПОТИК",
+			"image": "https://cs8.pikabu.ru/video/2016/04/11/1/og_og_1460326438378039660.jpg",
+			"video": "https://youtu.be/V1YmrIn1uiI"
+		},
+    {
+			"id": 7,
+			"userId": 7,
+			"author": "Кирилл",
+			"name": "ЧТО ЗА ТЯГИ ТАКИЕ БАРХАТНЫЕ",
+			"image": "https://i.ytimg.com/vi/SgMiPjSBxxc/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGEAgUyhyMA8=&rs=AOn4CLCftvrQ1V2Zv7f5qlmXeL7QDV4UVw",
+			"video": "https://youtu.be/Ka7Z4w07IEg"
+		},
+    {
+			"id": 8,
+			"userId": 8,
+			"author": "Миша",
+			"name": "Миша все хуйня давай по новой",
+			"image": "https://a.d-cd.net/nKBIHZhlFgJVdWz8-URPP-omY4M-1920.jpg",
+			"video": "https://youtu.be/IkCh8VfN2d4"
+		},
+    {
+			"id": 9,
+			"userId": 9,
+			"author": "Степа",
+			"name": "Корова танцует под польскую песню",
+			"image": "https://i.ytimg.com/vi/FDnJ1FPYP1Y/maxresdefault.jpg",
+			"video": "https://youtu.be/pqRc1Y1vAh4"
+		},
+    {
+			"id": 10,
+			"userId": 10,
+			"author": "Дмитрий",
+			"name": "Ну ничего страшного",
+			"image": "https://sun9-73.userapi.com/rYpmwSpgTpIgisrpocb2tV2a4A8A2fbT0wmcNw/p2-quVzCbvk.jpg",
+			"video": "https://youtu.be/DWMqnggznRQ"
+		}
+  ],
+	"comments": [],
+  "subscriptions": [],
+  "myProfile": {
+    "username": "User"
+  }
+}
