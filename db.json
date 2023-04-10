@@ -81,6 +81,58 @@
 			"video": "https://youtu.be/DWMqnggznRQ"
 		}
   ],
+	"users" : [
+		{
+			"id" : 1,
+			"username" : "Адольф",
+			"avatar" : ""
+		},
+		{
+			"id" : 2,
+			"username" : "Анатолий",
+			"avatar" : ""
+		},
+		{
+			"id" : 3,
+			"username" : "Аркадий",
+			"avatar" : ""
+		},
+		{
+			"id" : 4,
+			"username" : "Валера",
+			"avatar" : ""
+		},
+		{
+			"id" : 5,
+			"username" : "Нурлан",
+			"avatar" : ""
+		},
+		{
+			"id" : 6,
+			"username" : "Ярик",
+			"avatar" : ""
+		},
+		{
+			"id" : 7,
+			"username" : "Кирилл",
+			"avatar" : ""
+		},
+		{
+			"id" : 8,
+			"username" : "Миша",
+			"avatar" : ""
+		},
+		{
+			"id" : 9,
+			"username" : "Стёпа",
+			"avatar" : ""
+		},
+		{
+			"id" : 10,
+			"username" : "Дмитрий",
+			"avatar" : ""
+		}
+	],
 	"comments": [],
   "subscriptions": [],
   "myProfile": {

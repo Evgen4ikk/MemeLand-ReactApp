@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hover-scale {
+  transition: transform 0.4s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+

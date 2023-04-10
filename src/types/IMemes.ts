@@ -1,6 +1,7 @@
 export interface IMemes { 
 	id: number
 	userId: number
+	myPin: boolean
 	author: string
 	name: string
 	image: string
