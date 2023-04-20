@@ -1,5 +1,5 @@
 export interface IUsers {
-	id: number | undefined
+	id: number
 	username: string | undefined
 	avatar: string | undefined
 }
