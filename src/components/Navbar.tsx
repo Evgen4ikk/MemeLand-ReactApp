@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { api } from '../store/api/api'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
-import { Avatar, Badge } from '@mui/material'
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import { Avatar } from '@mui/material'
 import IconButton from '@mui/material/IconButton';
+import Notifications from './Notifications'
 
 const Navbar = () => {
 
@@ -35,13 +35,7 @@ const Navbar = () => {
 						</IconButton>
 					</div>
 				</Link>
-				<div className='rounded-full mr-5 text-[#f1f1f1] hover:bg-[#272727]'>
-					<IconButton>
-						<Badge badgeContent={1} color="primary">
-								<NotificationsNoneOutlinedIcon style={{ color: '#fff' }} />
-						</Badge>
-					</IconButton>
-				</div>
+				<Notifications />
 				<Link to='/profile'>
 					<Avatar src={profile?.avatar} />
 				</Link>
