@@ -3,24 +3,24 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 const FAV_KEY = 'fk'
 
 interface MemesState{
-	favourites: string []
+	liked: string []
 }
 
 const initialState: MemesState = {
-	favourites: JSON.parse(localStorage.getItem(FAV_KEY) ?? '[]'),
+	liked: JSON.parse(localStorage.getItem(FAV_KEY) ?? '[]'),
 }
 
 export const memesSlice = createSlice({
 	name: "meme",
 	initialState,
 	reducers: {
-		addFavourite(state, action: PayloadAction<string>) {
-			state.favourites.push(action.payload)
-			localStorage.setItem(FAV_KEY, JSON.stringify(state.favourites))
+		addLiked(state, action: PayloadAction<string>) {
+			state.liked.push(action.payload)
+			localStorage.setItem(FAV_KEY, JSON.stringify(state.liked))
 		},	
-		removeFavourite(state, action: PayloadAction<string>) {
-			state.favourites = state.favourites.filter(f => f !== action.payload)
-			localStorage.setItem(FAV_KEY, JSON.stringify(state.favourites))
+		removeLiked(state, action: PayloadAction<string>) {
+			state.liked = state.liked.filter(f => f !== action.payload)
+			localStorage.setItem(FAV_KEY, JSON.stringify(state.liked))
 		}
 	}
 })

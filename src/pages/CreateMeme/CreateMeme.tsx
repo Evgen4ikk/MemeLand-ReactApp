@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { api } from '../store/api/api'
-import { IMemes } from '../types/IMemes'
 import { useNavigate } from 'react-router-dom'
+import { api } from '../../store/api/api'
+import { IMemes } from '../../types/IMemes'
 
 const CreateMeme: React.FC = () => {
 	const navigate = useNavigate();
 	const formRef = useRef<HTMLDivElement>(null);
-	const [createMeme ] = api.useCreateMemeMutation()
+	const [ createMeme ] = api.useCreateMemeMutation()
 	const { data: myProfile } = api.useFetchProfileDataQuery('')
 	const [isFormOpen, setIsFormOpen] = useState(false)
 	const defaultValue = {

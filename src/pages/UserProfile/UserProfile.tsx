@@ -1,5 +1,4 @@
-import React from 'react'
-import { useTypedSelector } from '../hooks/useTypedSelector'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 const UserProfile = () => {
 	const { userId } = useTypedSelector(state => state.getUserId)

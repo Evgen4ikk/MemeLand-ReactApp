@@ -4,6 +4,7 @@ import { memesReducer } from './slice/memes'
 import { memeIdReducer } from './slice/getMemeId'
 import { userIdReducer } from './slice/getUserId'
 
+
 const reducers = combineReducers({
 	[api.reducerPath]: api.reducer,
 	favMemes: memesReducer,
@@ -17,5 +18,3 @@ export const store = configureStore
 	middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware().concat(api.middleware),
 })
-
-export type RootState = ReturnType<typeof store.getState>

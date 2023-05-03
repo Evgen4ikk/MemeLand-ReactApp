@@ -1,13 +1,16 @@
-import { api } from '../store/api/api'
-import MemeItem from '../components/MemeItem'
+import MemeItem from '../../components/MemeItem'
+import { api } from '../../store/api/api'
 
 const Home = () => {
   const { isLoading, data } = api.useFetchAllMemesQuery('')
   return (
     <div className="mx-auto pt-10">
-      <div className="flex flex-wrap gap-10 justify-center">
+			{/* <div className='fixed left-0 top-[60px] px-1 w-[72px]'>
+				<Menu />
+			</div> */}
+      <div className="flex flex-wrap gap-10 justify-center ">
 				{isLoading
-					? <div>Loading...</div>
+					? <div>Загрузка...</div>
 					: data
 						? data?.map(meme =>
 							(
@@ -16,7 +19,7 @@ const Home = () => {
 								</div>
 							)
 						)
-						: <div>Not Found</div>
+						: <div>Ничего не найдено :(</div>
 				}
       </div>
     </div>
