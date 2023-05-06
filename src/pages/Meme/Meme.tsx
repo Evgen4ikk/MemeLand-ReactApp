@@ -5,21 +5,14 @@ import MemeSub from '../../components/MemeSub'
 import { useActions } from '../../hooks/useActions'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { api } from '../../store/api/api'
+import MemeComm from '../../components/MemeComm'
 
 const Meme: React.FC = () => {
   const { memeId } = useTypedSelector(state => state.getMemeId);
 
   const { data } = api.useFetchMemeIdQuery(memeId);
 
-  const { data: comments } = api.useFetchCommentsMemeIdQuery(memeId);
-
   const { data: myProfile } = api.useFetchProfileDataQuery('');
-
-  const [createComments] = api.useCreateCommentMutation();
-
-  const [comment, setComment] = useState<string>('');
-
-  const { getUserId } = useActions();
 
 	return (
 		<div className='w-[1100px] mx-auto pt-8'>
@@ -46,12 +39,15 @@ const Meme: React.FC = () => {
 							<MemeLikes memeId={memeId}/>
 						</div>
 					</div>
+					<div className='max-w-[800px]'>
+						<MemeComm memeId={memeId}/>
 					</div>
 				</div>
-				<div>
-					sd;fls'dfl
-				</div>
+			<div>
+				asdasdasd
 			</div>
+			</div>
+		</div>
 	)
 }
 

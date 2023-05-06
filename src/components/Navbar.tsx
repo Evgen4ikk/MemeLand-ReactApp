@@ -37,7 +37,7 @@ const Navbar = () => {
 				<Link to='/create-meme'>
 					<div className='rounded-full mr-2 text-[#f1f1f1] hover:bg-[#272727]'>
 						<IconButton>
-							<AiOutlinePlusCircle style={{ color: '#fff' }} size={26}/>
+							<AiOutlinePlusCircle style={{ color: '#fff' }} size={26} />
 						</IconButton>
 					</div>
 				</Link>

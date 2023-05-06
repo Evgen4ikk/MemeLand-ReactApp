@@ -9,7 +9,7 @@
       "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
       "video": "https://youtu.be/WnhjDV5ZUL0",
       "views": 0,
-      "likes": 2031
+      "likes": 2030
     },
     {
       "id": 2,
@@ -205,20 +205,9 @@
     }
   ],
   "comments": [],
+  "answer": [],
   "subscriptions": [],
-  "liked": [
-    {
-      "id": 1,
-      "userId": 1,
-      "author": "PixelPenguin",
-      "name": "Дверь мне запилил",
-      "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
-      "video": "https://youtu.be/WnhjDV5ZUL0",
-      "views": 0,
-      "likes": 2031,
-      "myMeme": false
-    }
-  ],
+  "liked": [],
   "history": [],
   "myProfile": {
     "username": "User",
