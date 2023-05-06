@@ -5,9 +5,11 @@
       "userId": 1,
       "author": "PixelPenguin",
       "name": "Дверь мне запилил",
+      "myMeme": false,
       "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
       "video": "https://youtu.be/WnhjDV5ZUL0",
-      "views": 0
+      "views": 0,
+      "likes": 2031
     },
     {
       "id": 2,
@@ -16,7 +18,8 @@
       "name": "Капибара, капибара, капибара",
       "image": "https://ru-static.z-dn.net/files/d07/35b0ee6d583077e63bce6a992e81455c.jpg",
       "video": "https://youtu.be/3axFC8wYjB8",
-      "views": 0
+      "views": 0,
+      "likes": 4
     },
     {
       "id": 3,
@@ -25,7 +28,8 @@
       "name": "Стартуем! Наталья морская пехота!",
       "image": "https://i.ytimg.com/vi/qsHeemDhubo/maxresdefault.jpg",
       "video": "https://youtu.be/pWJOxvcp7xk",
-      "views": 0
+      "views": 0,
+      "likes": 112
     },
     {
       "id": 4,
@@ -34,7 +38,8 @@
       "name": "Обращение к шароёбам",
       "image": "https://i.ytimg.com/vi/FIE84TeDOK8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgYSg_MA8=&amp;rs=AOn4CLC4QLs5_GfgX9Yyj-UahTjwc-mmSA",
       "video": "https://www.youtube.com/watch?v=4Qx5n6_W_24",
-      "views": 0
+      "views": 0,
+      "likes": 54
     },
     {
       "id": 5,
@@ -43,7 +48,8 @@
       "name": "Кот Киселек",
       "image": "https://i.ytimg.com/vi/vHFwHDRFiN0/maxresdefault.jpg",
       "video": "https://youtu.be/HTm3OHyMjhQ",
-      "views": 0
+      "views": 0,
+      "likes": 33
     },
     {
       "id": 6,
@@ -52,7 +58,8 @@
       "name": "ЯРИК БОЧОК ПОТИК",
       "image": "https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/7b7a8285df31b1e61bfb_lak1ll_92186164042_4931078351/thumb/custom-9b5f4d8e-d5be-4714-8e74-c1995834c8c5-640x360.jpeg",
       "video": "https://youtu.be/V1YmrIn1uiI",
-      "views": 0
+      "views": 0,
+      "likes": 54
     },
     {
       "id": 7,
@@ -61,7 +68,8 @@
       "name": "ЧТО ЗА ТЯГИ ТАКИЕ БАРХАТНЫЕ",
       "image": "https://i.ytimg.com/vi/SgMiPjSBxxc/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGEAgUyhyMA8=&rs=AOn4CLCftvrQ1V2Zv7f5qlmXeL7QDV4UVw",
       "video": "https://youtu.be/Ka7Z4w07IEg",
-      "views": 0
+      "views": 0,
+      "likes": 1
     },
     {
       "id": 8,
@@ -70,7 +78,8 @@
       "name": "Миша все хуйня давай по новой",
       "image": "https://a.d-cd.net/nKBIHZhlFgJVdWz8-URPP-omY4M-1920.jpg",
       "video": "https://youtu.be/IkCh8VfN2d4",
-      "views": 0
+      "views": 0,
+      "likes": 2133
     },
     {
       "id": 9,
@@ -79,7 +88,8 @@
       "name": "Корова танцует под польскую песню",
       "image": "https://i.ytimg.com/vi/FDnJ1FPYP1Y/maxresdefault.jpg",
       "video": "https://youtu.be/pqRc1Y1vAh4",
-      "views": 0
+      "views": 0,
+      "likes": 4812
     },
     {
       "id": 10,
@@ -88,7 +98,8 @@
       "name": "Ну ничего страшного",
       "image": "https://sun9-73.userapi.com/rYpmwSpgTpIgisrpocb2tV2a4A8A2fbT0wmcNw/p2-quVzCbvk.jpg",
       "video": "https://youtu.be/DWMqnggznRQ",
-      "views": 0
+      "views": 0,
+      "likes": 4553
     }
   ],
   "users": [
@@ -195,7 +206,19 @@
   ],
   "comments": [],
   "subscriptions": [],
-  "liked": [],
+  "liked": [
+    {
+      "id": 1,
+      "userId": 1,
+      "author": "PixelPenguin",
+      "name": "Дверь мне запилил",
+      "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
+      "video": "https://youtu.be/WnhjDV5ZUL0",
+      "views": 0,
+      "likes": 2031,
+      "myMeme": false
+    }
+  ],
   "history": [],
   "myProfile": {
     "username": "User",

@@ -15,7 +15,8 @@ const CreateMeme: React.FC = () => {
 		image: '',
 		video: '',
 		author: myProfile?.username,
-		views: 0
+		views: 0,
+		likes: 0,
 	} as IMemes
 	const [meme, setMeme] = useState(defaultValue)
 

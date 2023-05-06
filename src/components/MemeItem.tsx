@@ -3,6 +3,7 @@ import { IMemes } from '../types/IMemes'
 import { useActions } from '../hooks/useActions'
 import { Avatar } from '@mui/material'
 import { api } from '../store/api/api'
+import { IUsers } from '../types/IUsers'
 
 interface IMemeItem {
   meme: IMemes
@@ -16,14 +17,14 @@ const MemeItem: React.FC<IMemeItem> = ( { meme } ) => {
 
   const handleGetId = () => {
     getMemeId(meme.id);
-    if (user) {
-      getUserId(user?.[0].id);
+    if (user && user[0]?.id !== undefined) {
+      getUserId(user?.[0]?.id);
     }
   }
 
   const handleUser = () => {
-    if (user) {
-      getUserId(user?.[0].id);
+    if (user && user[0]?.id !== undefined) {
+      getUserId(user?.[0]?.id);
     }
 	}
 

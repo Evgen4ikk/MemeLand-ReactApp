@@ -30,9 +30,19 @@ export const api = createApi({
 			}]
 		}),
 		deleteMeme: build.mutation({
-      query: (id) => ({
-        url: `/memes/${id}`,
-        method: 'DELETE',
+      query: (meme) => ({
+        url: `/memes/${meme.id}`,
+        method: 'DELETE'
+      }),
+			invalidatesTags: () => [{
+				type: 'meme'
+			}]
+    }),
+		updateMeme: build.mutation({
+      query: (meme) => ({
+        url: `/memes/${meme.id}`,
+        method: 'PUT',
+				body: meme
       }),
 			invalidatesTags: () => [{
 				type: 'meme'
@@ -120,7 +130,7 @@ export const api = createApi({
 				url: '/liked'
 			})
 		}),
-		fetchMyPins: build.query<IMemes[], string>({
+		fetchMyMemes: build.query<IMemes[], string>({
 			query: () => ({
 				url: `/memes?myMeme=true`
 			})
