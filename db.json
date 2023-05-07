@@ -106,7 +106,7 @@
     {
       "id": 1,
       "username": "PixelPenguin",
-      "avatar": "https://yt3.ggpht.com/ytc/AMLnZu-LRWzkaA0kmVSEQG8Yuyy6Ly2YyFsZ5OBgb2qG=s900-c-k-c0x00ffffff-no-rj"
+      "avatar": "https://bumper-stickers.ru/47109-thickbox_default/pingvin.jpg"
     },
     {
       "id": 2,
@@ -204,7 +204,15 @@
       "avatar": "https://yt3.ggpht.com/ytc/AKedOLRhKsSa00TdvJGsSfBMEGUsw8H9gIRM5SiF29V4=s900-c-k-c0x00ffffff-no-rj"
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "memeId": 6,
+      "username": "User",
+      "title": "sdfsdf",
+      "time": "08.05.2023, 02:04:08",
+      "id": 1
+    }
+  ],
   "answer": [],
   "subscriptions": [],
   "liked": [],
