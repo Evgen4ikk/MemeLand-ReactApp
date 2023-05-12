@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom'
-import { IMemes } from '../types/IMemes'
-import { useActions } from '../hooks/useActions'
 import { Avatar } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { useActions } from '../hooks/useActions'
 import { api } from '../store/api/api'
-import { IUsers } from '../types/IUsers'
+import { IMemes } from '../types/IMemes'
 
 interface IMemeItem {
   meme: IMemes

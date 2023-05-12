@@ -204,18 +204,28 @@
       "avatar": "https://yt3.ggpht.com/ytc/AKedOLRhKsSa00TdvJGsSfBMEGUsw8H9gIRM5SiF29V4=s900-c-k-c0x00ffffff-no-rj"
     }
   ],
-  "comments": [
+  "comments": [],
+  "answers": [],
+  "subscriptions": [
     {
-      "memeId": 6,
-      "username": "User",
-      "title": "sdfsdf",
-      "time": "08.05.2023, 02:04:08",
-      "id": 1
+      "id": 2,
+      "username": "GamerGorilla",
+      "avatar": "https://avatars.mds.yandex.net/i?id=6f6a93f3b904d9bf0de3331072d853fa-4389782-images-thumbs&n=13"
     }
   ],
-  "answer": [],
-  "subscriptions": [],
-  "liked": [],
+  "liked": [
+    {
+      "id": 2,
+      "userId": 2,
+      "author": "GamerGorilla",
+      "name": "Капибара, капибара, капибара",
+      "image": "https://ru-static.z-dn.net/files/d07/35b0ee6d583077e63bce6a992e81455c.jpg",
+      "video": "https://youtu.be/3axFC8wYjB8",
+      "views": 0,
+      "likes": 4,
+      "myMeme": false
+    }
+  ],
   "history": [],
   "myProfile": {
     "username": "User",

@@ -1,5 +1,3 @@
-import { IAnswer } from './IAnswer'
-
 export interface IComments {
 	id: number
 	memeId: number

@@ -1,7 +1,8 @@
-import { IUsers } from './IUsers'
-
-export interface IAnswer {
-	user: IUsers[]
+export interface IAnswers {
+	id: number
+	memeId: number
+	commentId: number
+	username: string
 	title: string
 	time: string
 }

@@ -1,12 +1,15 @@
-import { Avatar } from '@mui/material'
-import IconButton from '@mui/material/IconButton'
+import { Avatar, IconButton } from '@mui/material'
 import EmojiPicker from 'emoji-picker-react'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { BiWinkSmile } from 'react-icons/bi'
+import { BsPencil, BsTrash } from 'react-icons/bs'
+import { GoKebabVertical } from 'react-icons/go'
 import { Link } from 'react-router-dom'
-import { useTypedSelector } from '../hooks/useTypedSelector'
+import { useClickAway } from 'react-use'
 import { api } from '../store/api/api'
 import { IComments } from '../types/IComments'
+import MemeAnswer from './MemeAnswer'
 
 interface MemeCommProps {
   memeId: number;
@@ -22,30 +25,40 @@ const MemeComm: React.FC<MemeCommProps> = ({ memeId }) => {
 
   const [createComments] = api.useCreateCommentMutation();
 
+	const [deleteComment] = api.useDeleteCommentMutation(); 
+
   const [comment, setComment] = useState<string>('');
 
-	const [commentDate, setCommentDate] = useState<string>('');
+	const [isCommClicked, setIsCommClicked] = useState<boolean>(false)
 
-	const [isClicked, setIsClicked] = useState<boolean>(false)
+	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+	const menuRef = useRef(null);
+	
+	useClickAway(menuRef, () => {
+		setIsMenuOpen(false);
+	});
+
+	const [selectedCommentId, setSelectedCommentId] = useState<number>();
 
 	const [isEmojiClicked, setIsEmojiClicked] = useState<boolean>(false)
 
-	const [selectedEmoji, setSelectedEmoji] = useState(null);
+	const [selectedEmoji, setSelectedEmoji] = useState<null>(null);
 
-	const [disableSend, setDisableSend] = useState<boolean>(true);
+	const [disableSend, setDisableSend] = useState<boolean>(true);	
+	
+	const handleEmojiClick = (emojiObject: any) => {
+		setSelectedEmoji(emojiObject);
+		setComment((prevComment) => prevComment + emojiObject.emoji);
+		setDisableSend(comment.trim().length === 0);
+	};
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChangeComm = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setComment(e.target.value);
 		setDisableSend(!e.target.value.trim());
 	};
 
-	const handleEmojiClick = (emojiObject: any) => {
-    setSelectedEmoji(emojiObject);
-    setComment((prevComment) => prevComment + emojiObject.emoji);
-    setDisableSend(comment.trim().length === 0);
-	};
-
-	const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleCreateComm = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (comment.trim()) {
 			const now = new Date();
@@ -56,36 +69,45 @@ const MemeComm: React.FC<MemeCommProps> = ({ memeId }) => {
 				title: comment,
 				time: formattedDate,
 			} as IComments);
-			setCommentDate(formattedDate);
 			setComment('');
+			setIsCommClicked(false)
 			setDisableSend(true);
 			setIsEmojiClicked(false)
 		}
 	};
 
+	const handleDeleteComm = async (commentId: number) => {
+    await deleteComment({ id: commentId } as IComments);
+}
+
 	return (
-		<div className='pt-4 max-w-[800px]'>
-			<h1 className=' text-xl font-medium text-[#f1f1f1] pb-2'>{comments?.length} комментариев</h1>
-			<form onSubmit={handleCreate}>
+		<div className='pt-4 w-full'>
+			<h1 className=' text-xl font-medium text-[#f1f1f1] pb-2'>
+			{comments?.length} 
+			{comments?.length === 1 ? ' комментарий' : (
+				comments?.length && comments?.length > 1 && comments?.length < 5 ? ' комментария' : ' комментариев'
+			)}
+			</h1>
+			<form onSubmit={handleCreateComm}>
 				<div className="flex">
 					<div className="mr-5">
 						<Link to={`/MyProfile}`}>
-							<Avatar sx={{ height: "50px", width: "50px" }} src={myProfile?.avatar} />
+							<Avatar sx={{ height: "40px", width: "40px" }} src={myProfile?.avatar} />
 						</Link>
 					</div>
 					<div className="w-full">
 						<input
 							className={`outline-none bg-inherit border-b ${
-								isClicked ? "border-white" : "border-[#717171]"
+								isCommClicked ? "border-white" : "border-[#717171]"
 							} text-[#f1f1f1] placeholder-[#aaa] py-[2px] px-1 w-full`}
 							placeholder="Введите комментарий"
 							value={comment}
-							onChange={handleChange}
-							onClick={() => setIsClicked(true)}
+							onChange={handleChangeComm}
+							onClick={() => setIsCommClicked(true)}
 						/>
 					</div>
 				</div>
-				{isClicked ? (
+				{isCommClicked ? (
 					<div className="flex justify-between items-center">
 						<div className="rounded-full ml-16 text-[#f1f1f1] hover:bg-[#272727]">
 							<IconButton onClick={() => setIsEmojiClicked(!isEmojiClicked)}>
@@ -94,14 +116,14 @@ const MemeComm: React.FC<MemeCommProps> = ({ memeId }) => {
 						</div>
 						<div>
 							<div className="relative">
-								<div className="absolute left-[-400px] top-[45px]">
+								<div className="absolute left-[-400px] top-[45px] z-10">
 									{isEmojiClicked && <EmojiPicker width={600} height={400} theme={dark} onEmojiClick={handleEmojiClick}/>}
 								</div>
 							</div>
 							<div>
 								<button 
 									className="text-white px-4 py-2 rounded-full hover:bg-[#272727]"
-									onClick={() => setIsClicked(false)}
+									onClick={() => setIsCommClicked(false)}
 								>
 									Отмена
 								</button>
@@ -119,14 +141,41 @@ const MemeComm: React.FC<MemeCommProps> = ({ memeId }) => {
 					<></>
 				)}
 			</form>
-			<div className="">
+			<div className='flex flex-col-reverse'>
 				{comments?.map((comment: IComments) => (
-					<div key={comment.id} className="py-4 flex">
-						<img
-							className="h-10 w-10 rounded-full"
-							src={myProfile?.avatar}
-							alt="Profile Avatar"
-						/>
+					<div
+						key={comment.id}
+						className="my-6 flex relative"
+					>
+						<Avatar sx={{ height: "40px", width: "40px" }} src={myProfile?.avatar} />
+						<div className="absolute top-0 right-0">
+								<IconButton 
+									onClick={() => {
+										setSelectedCommentId(comment?.id);
+										setIsMenuOpen(!isMenuOpen);
+									}}
+								>
+									<GoKebabVertical style={{ color: "#f1f1f1" }} size={16} />
+								</IconButton>
+						</div>
+						{selectedCommentId === comment.id && isMenuOpen ? (
+							<div ref={menuRef} className='absolute flex flex-col bg-[#282828] py-2 text-[#f1f1f1] right-[-100px] top-[35px] rounded-lg z-10'
+							>
+								<button
+									className='hover:bg-[#535353] pr-4 py-1 flex items-center'
+								>
+									<span className='px-3'><BsPencil size={18}/></span>
+									Изменить
+								</button>
+								<button
+									className='hover:bg-[#535353] pr-4 py-1 flex items-center'
+									onClick={() => handleDeleteComm(comment.id)}
+								>
+									<span className='px-3'><BsTrash size={18}/></span>
+									Удалить
+								</button>
+							</div>
+						) : null}
 						<div className="ml-4">
 							<div className="flex items-center">
 								<h4 className="text-sm font-medium text-[#f1f1f1]">
@@ -136,11 +185,17 @@ const MemeComm: React.FC<MemeCommProps> = ({ memeId }) => {
 									{comment?.time}
 								</p>
 							</div>
-							<p className="text-sm text-[#f1f1f1] mt-1">
-								{comment?.title}
-							</p>
+								<p className="text-sm text-[#f1f1f1] mt-1">
+									{comment?.title}
+								</p>
+								<div className='w-full'>
+									<MemeAnswer 
+										comment={comment} 
+										memeId={memeId}
+									/>
+								</div>
+								</div>
 						</div>
-					</div>
 				))}
 			</div>
 		</div>

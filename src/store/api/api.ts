@@ -4,6 +4,7 @@ import { IMemes } from '../../types/IMemes'
 import { IUsers } from '../../types/IUsers'
 import { IProfile } from '../../types/IProfile'
 import { IComments } from '../../types/IComments'
+import { IAnswers } from '../../types/IAnswer'
 
 export const api = createApi({
 	reducerPath: 'api',
@@ -69,6 +70,44 @@ export const api = createApi({
 				url: '/comments',
 				method: 'POST',
 				body: comment
+			}),
+			invalidatesTags: () => [{
+				type: 'meme'
+			}]
+		}),
+		deleteComment: build.mutation<IComments, IComments>({
+			query: (comment) => ({
+				url: `/comments/${comment.id}`,
+				method: 'DELETE',
+				body: comment
+			}),
+			invalidatesTags: () => [{
+				type: 'meme'
+			}]
+		}),
+		fetchAnswersMemeId: build.query<IAnswers[], number>({
+			query: (id: number) => ({
+				url: `/memes/${id}/answers`
+			}),
+			providesTags: () => [{
+				type: 'meme'
+			}]
+		}),
+		createAnswer: build.mutation<IAnswers, IAnswers>({
+			query: answer => ({
+				url: '/answers',
+				method: 'POST',
+				body: answer
+			}),
+			invalidatesTags: () => [{
+				type: 'meme'
+			}]
+		}),
+		deleteAnswer: build.mutation<IAnswers, IAnswers>({
+			query: (answer) => ({
+				url: `/answer/${answer.id}`,
+				method: 'DELETE',
+				body: answer
 			}),
 			invalidatesTags: () => [{
 				type: 'meme'
