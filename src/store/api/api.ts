@@ -93,6 +93,14 @@ export const api = createApi({
 				type: 'meme'
 			}]
 		}),
+		fetchCommentAnswers: build.query<IAnswers[], number>({
+			query: (commentId: number) => ({
+				url: `/comments/${commentId}/answers`,
+			}),
+			providesTags: (commentId) => [
+				{ type: 'meme', commentId },
+			],
+		}),
 		createAnswer: build.mutation<IAnswers, IAnswers>({
 			query: answer => ({
 				url: '/answers',
@@ -105,7 +113,7 @@ export const api = createApi({
 		}),
 		deleteAnswer: build.mutation<IAnswers, IAnswers>({
 			query: (answer) => ({
-				url: `/answer/${answer.id}`,
+				url: `/answers/${answer.id}`,
 				method: 'DELETE',
 				body: answer
 			}),

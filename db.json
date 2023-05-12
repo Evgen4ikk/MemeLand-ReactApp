@@ -204,8 +204,25 @@
       "avatar": "https://yt3.ggpht.com/ytc/AKedOLRhKsSa00TdvJGsSfBMEGUsw8H9gIRM5SiF29V4=s900-c-k-c0x00ffffff-no-rj"
     }
   ],
-  "comments": [],
-  "answers": [],
+  "comments": [
+    {
+      "memeId": 1,
+      "username": "User",
+      "title": "Хай",
+      "time": "13.05.2023, 01:30:23",
+      "id": 1
+    }
+  ],
+  "answers": [
+    {
+      "memeId": 1,
+      "commentId": 1,
+      "username": "User",
+      "title": "Заемч😋😋😋😋",
+      "time": "13.05.2023, 01:30:41",
+      "id": 1
+    }
+  ],
   "subscriptions": [
     {
       "id": 2,
