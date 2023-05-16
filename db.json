@@ -9,7 +9,7 @@
       "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
       "video": "https://youtu.be/WnhjDV5ZUL0",
       "views": 0,
-      "likes": 2030
+      "likes": 2031
     },
     {
       "id": 2,
@@ -204,45 +204,10 @@
       "avatar": "https://yt3.ggpht.com/ytc/AKedOLRhKsSa00TdvJGsSfBMEGUsw8H9gIRM5SiF29V4=s900-c-k-c0x00ffffff-no-rj"
     }
   ],
-  "comments": [
-    {
-      "memeId": 1,
-      "username": "User",
-      "title": "Хай",
-      "time": "13.05.2023, 01:30:23",
-      "id": 1
-    }
-  ],
-  "answers": [
-    {
-      "memeId": 1,
-      "commentId": 1,
-      "username": "User",
-      "title": "Заемч😋😋😋😋",
-      "time": "13.05.2023, 01:30:41",
-      "id": 1
-    }
-  ],
-  "subscriptions": [
-    {
-      "id": 2,
-      "username": "GamerGorilla",
-      "avatar": "https://avatars.mds.yandex.net/i?id=6f6a93f3b904d9bf0de3331072d853fa-4389782-images-thumbs&n=13"
-    }
-  ],
-  "liked": [
-    {
-      "id": 2,
-      "userId": 2,
-      "author": "GamerGorilla",
-      "name": "Капибара, капибара, капибара",
-      "image": "https://ru-static.z-dn.net/files/d07/35b0ee6d583077e63bce6a992e81455c.jpg",
-      "video": "https://youtu.be/3axFC8wYjB8",
-      "views": 0,
-      "likes": 4,
-      "myMeme": false
-    }
-  ],
+  "comments": [],
+  "answers": [],
+  "subscriptions": [],
+  "liked": [],
   "history": [],
   "myProfile": {
     "username": "User",

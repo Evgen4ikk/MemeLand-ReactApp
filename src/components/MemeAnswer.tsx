@@ -1,15 +1,15 @@
-import React, { useRef, useState } from 'react'
 import { Avatar, IconButton } from '@mui/material'
+import EmojiPicker from 'emoji-picker-react'
+import React, { useState } from 'react'
+import { BiWinkSmile } from 'react-icons/bi'
+import { GoTriangleDown, GoTriangleUp } from 'react-icons/go'
+import { Link } from 'react-router-dom'
 import { api } from '../store/api/api'
 import { IAnswers } from '../types/IAnswer'
-import { Link } from 'react-router-dom'
 import { IComments } from '../types/IComments'
-import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
-import EmojiPicker from 'emoji-picker-react'
-import { BiWinkSmile } from 'react-icons/bi'
-import { useClickAway } from 'react-use'
-import { BsPencil, BsTrash } from 'react-icons/bs'
-import { GoKebabVertical, GoTriangleDown, GoTriangleUp } from 'react-icons/go'
+import AnswerItem from './AnswerItem'
+import DislikeButton from './UI/DislikeButton'
+import LikeButton from './UI/LikeButton'
 
 interface MemeAnswerProps {
   memeId: number;
@@ -22,13 +22,9 @@ const MemeAnswer: React.FC<MemeAnswerProps> = ( {memeId, comment }) => {
 
   const { data: myProfile } = api.useFetchProfileDataQuery('');
 
-	const { data: answers } = api.useFetchAnswersMemeIdQuery(memeId);
-
 	const { data: answersById = []} = api.useFetchCommentAnswersQuery(comment.id);
 	
 	const [createAnswers] = api.useCreateAnswerMutation()
-
-	const [deleteAnswer] = api.useDeleteAnswerMutation()
 
 	const [ answer, setAnswer ] = useState<string>('')
 
@@ -43,8 +39,6 @@ const MemeAnswer: React.FC<MemeAnswerProps> = ( {memeId, comment }) => {
 	const [disableSend, setDisableSend] = useState<boolean>(true);
 
 	const [likedComments, setLikedComments] = useState<any>({});
-
-	const [likedAnswers, setLikedAnswers] = useState<any>({});
 
 	const [isEmojiClicked, setIsEmojiClicked] = useState<boolean>(false)
 
@@ -66,26 +60,6 @@ const MemeAnswer: React.FC<MemeAnswerProps> = ( {memeId, comment }) => {
 			[commentId]: {
 				isLiked: false,
 				isDisliked: !likedComments[commentId]?.isDisliked,
-			},
-		});
-	};
-
-	const handleAnswerLikeClick = (answerId: number) => {
-		setLikedAnswers({
-			...likedComments,
-			[answerId]: {
-				isLiked: !likedAnswers[answerId]?.isLiked,
-				isDisliked: false,
-			},
-		});
-	};
-
-	const handleAnswerDislikeClick = (answerId: number) => {
-		setLikedAnswers({
-			...likedComments,
-			[answerId]: {
-				isLiked: false,
-				isDisliked: !likedAnswers[answerId]?.isDisliked,
 			},
 		});
 	};
@@ -120,44 +94,22 @@ const MemeAnswer: React.FC<MemeAnswerProps> = ( {memeId, comment }) => {
 		}
 	}
 
-	const handleDeleteAnswer = async (answerId: number) => {
-    await deleteAnswer({ id: answerId } as IAnswers);
-	}
 
-	const filteredAnswers = answers?.filter((a: any) => a.commentId === comment.id);
-
-	const [selectedAnswerId, setSelectedAnswerId] = useState<number>();
-
-	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-	const menuRef = useRef(null);
-	
-	useClickAway(menuRef, () => {
-		setIsMenuOpen(false);
-	});
 
 	return (
 		<div className='w-full'>
 			<div className='flex items-center pt-2'>
-				<div className='hover:bg-[#3f3f3f] rounded-full'>
-					<IconButton onClick={() => handleCommLikeClick(comment.id)}>
-						{likedComments[comment.id]?.isLiked
-							? <AiFillLike size={20} style={{color: '#f1f1f1'}}/>
-							: <AiOutlineLike size={20} style={{color: '#f1f1f1'}}/>
-						}
-					</IconButton>
-				</div>
+				<LikeButton
+					isLiked={likedComments[comment.id]?.isLiked} 
+					onClick={() => handleCommLikeClick(comment.id)}
+				/>
 				<span className='mr-2 text-[#aaa] text-sm'>
 					{likedComments[comment.id]?.isLiked ? 1 : 0}
 				</span>
-				<div className='hover:bg-[#3f3f3f] rounded-full'>
-					<IconButton onClick={() => handleCommDislikeClick(comment.id)}>
-						{likedComments[comment.id]?.isDisliked
-							? <AiFillDislike size={20} style={{color: '#f1f1f1'}}/>
-							: <AiOutlineDislike size={20} style={{color: '#f1f1f1'}}/>
-						}
-					</IconButton>
-				</div>
+				<DislikeButton
+					isDisliked={likedComments[comment.id]?.isDisliked} 
+					onClick={() => handleCommDislikeClick(comment.id)}
+				/>
 				<div>
 					<div className='hover:bg-[#3f3f3f] rounded-full ml-2'>
 						<IconButton
@@ -233,7 +185,7 @@ const MemeAnswer: React.FC<MemeAnswerProps> = ( {memeId, comment }) => {
 			<div className='flex flex-col-reverse'>
 				<div>
 					{answersById.length > 0
-						? 
+					&& (
 							<button 
 								className='flex items-center text-[#3ea6ff] px-3 py-1.5 rounded-full hover:bg-[#263850]'
 								onClick={() => setIsAnswerOpen(!isAnswerOpen)}
@@ -247,82 +199,14 @@ const MemeAnswer: React.FC<MemeAnswerProps> = ( {memeId, comment }) => {
 									answersById.length && answersById.length > 1 && answersById.length < 5 ? ' ответа' : ' ответов'
 								)}
 							</button>
-						: <></>
-					}
+
+					)}
 					{isAnswerOpen && (
-						<div>
-							{filteredAnswers?.map((answer: IAnswers) => (
-								<div
-									key={answer.id}
-								>
-									<div className="mt-3 flex relative">
-										<Avatar sx={{ height: "40px", width: "40px" }} src={myProfile?.avatar} />
-										<div className="absolute top-0 right-0">
-												<IconButton 
-													onClick={() => {
-														setSelectedAnswerId(answer.id);
-														setIsMenuOpen(!isMenuOpen);
-													}}
-												>
-													<GoKebabVertical style={{ color: "#f1f1f1" }} size={16} />
-												</IconButton>
-										</div>
-										{selectedAnswerId === answer.id && isMenuOpen ? (
-											<div ref={menuRef} className='absolute flex flex-col bg-[#282828] py-2 text-[#f1f1f1] right-[-100px] top-[35px] rounded-lg z-10'
-											>
-												<button
-													className='hover:bg-[#535353] pr-4 py-1 flex items-center'
-												>
-													<span className='px-3'><BsPencil size={18}/></span>
-													Изменить
-												</button>
-												<button
-													className='hover:bg-[#535353] pr-4 py-1 flex items-center'
-													onClick={() => handleDeleteAnswer(answer.id)}
-												>
-													<span className='px-3'><BsTrash size={18}/></span>
-													Удалить
-												</button>
-											</div>
-										) : null}
-										<div className="ml-4">
-											<div className="flex items-center">
-												<h4 className="text-sm font-medium text-[#f1f1f1]">
-													{answer.username}
-												</h4>
-												<p className="ml-2 text-sm text-[#aaaaaa]">
-													{answer.time}
-												</p>
-											</div>
-												<p className="text-sm text-[#f1f1f1] mt-1">
-													{answer.title}
-												</p>
-											</div>
-										</div>
-										<div className='flex items-center pt-1 ml-[45px]'>
-											<div className='hover:bg-[#3f3f3f] rounded-full'>
-												<IconButton onClick={() => handleAnswerLikeClick(answer.id)}>
-													{likedAnswers[answer.id]?.isLiked
-														? <AiFillLike size={20} style={{color: '#f1f1f1'}}/>
-														: <AiOutlineLike size={20} style={{color: '#f1f1f1'}}/>
-													}
-												</IconButton>
-											</div>
-											<span className='mr-2 text-[#aaa] text-sm'>
-												{likedAnswers[answer.id]?.isLiked ? 1 : 0}
-											</span>
-											<div className='hover:bg-[#3f3f3f] rounded-full'>
-												<IconButton onClick={() => handleAnswerDislikeClick(answer.id)}>
-													{likedAnswers[answer.id]?.isDisliked
-														? <AiFillDislike size={20} style={{color: '#f1f1f1'}}/>
-														: <AiOutlineDislike size={20} style={{color: '#f1f1f1'}}/>
-													}
-												</IconButton>
-											</div>
-										</div>
-									</div>
-							))}
-						</div>
+						<AnswerItem 
+							memeId={memeId}
+							comment={comment}
+							myProfile={myProfile}
+						/>
 					)}
 				</div>
 			</div>

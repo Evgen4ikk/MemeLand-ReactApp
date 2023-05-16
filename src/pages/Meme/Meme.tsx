@@ -6,6 +6,7 @@ import { useActions } from '../../hooks/useActions'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { api } from '../../store/api/api'
 import MemeComm from '../../components/MemeComm'
+import RelatedMemes from '../../components/RelatedMemes'
 
 const Meme: React.FC = () => {
   const { memeId } = useTypedSelector(state => state.getMemeId);
@@ -44,7 +45,7 @@ const Meme: React.FC = () => {
 					</div>
 				</div>
 			<div>
-				asdasdasd
+				<RelatedMemes memeId={memeId}/>
 			</div>
 			</div>
 		</div>
