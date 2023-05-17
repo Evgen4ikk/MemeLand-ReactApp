@@ -94,8 +94,6 @@ const MemeAnswer: React.FC<MemeAnswerProps> = ( {memeId, comment }) => {
 		}
 	}
 
-
-
 	return (
 		<div className='w-full'>
 			<div className='flex items-center pt-2'>

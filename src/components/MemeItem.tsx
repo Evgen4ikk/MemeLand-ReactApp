@@ -13,6 +13,7 @@ const MemeItem: React.FC<IMemeItem> = ( { meme } ) => {
   const { data: user } = api.useFetchUserMemeQuery(meme.userId)
   const { data: myProfile } = api.useFetchProfileDataQuery('')
   const { getMemeId, getUserId } = useActions()
+  
   const [deleteMeme, response] = api.useDeleteMemeMutation()
 
   const handleGetId = () => {
