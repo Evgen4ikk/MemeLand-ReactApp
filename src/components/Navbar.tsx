@@ -10,9 +10,9 @@ const Navbar = () => {
 	const { data: profile } = api.useFetchProfileDataQuery('')
 
 	return (
-		<div className='flex justify-between w-full px-4 items-center'>
+		<div className='fixed top-0 bg-[#0f0f0f] flex justify-between w-full px-4 items-center z-10'>
 			<div className='flex items-center'>
-				<div className='rounded-full mr-2 text-[#f1f1f1] hover:bg-[#272727]'>
+				<div className='rounded-full mr-4 text-[#f1f1f1] hover:bg-[#272727]'>
 					<IconButton>
 						<AiOutlineMenu style={{ color: '#f1f1f1' }} size={24}/>
 					</IconButton>

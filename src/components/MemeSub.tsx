@@ -56,7 +56,7 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 				<Link 
 					to={`/user/${data?.userId}`}
 				>
-					<Avatar src={user?.[0].avatar}/>
+					<Avatar src={user && user[0]?.avatar} />
 				</Link>
 			</div>
 			<div className='ml-2 mr-7'>

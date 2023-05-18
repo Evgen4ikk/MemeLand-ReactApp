@@ -8,12 +8,14 @@ interface RelatedMemeItemProps {
 
 const RelatedMemeItem: FC<RelatedMemeItemProps> = ({ meme }) => {
 
-	useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [meme.id]);
 
   return (
-		<Link to={`/meme/${meme.id}`}>
+		<Link 
+			to={`/meme/${meme.id}`}
+		>
 			<div className='w-[426px] flex'>
 				<div>
 					<img src={meme.image} className='w-[168px] h-[94px] mr-2' />
