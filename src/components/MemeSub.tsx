@@ -8,10 +8,6 @@ interface MemeSubProps {
 	userId: number
 }
 
-interface Subscription {
-	username: string;
-}
-
 const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 
 	const { data } = api.useFetchMemeIdQuery(memeId);
@@ -31,6 +27,7 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 			id: user?.[0]?.id,
 			username: user?.[0]?.username,
 			avatar: user?.[0]?.avatar,
+			subscribers: user?.[0]?.subscribers
 		});
     setIsSub(true);
   };
@@ -45,9 +42,10 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
   }, [subscriptions]);
 	
 	const subCheck = () => {
-		const isUserSubscribed = subscriptions?.some(
-			(subscription: Subscription) => subscription.username === user?.[0]?.username
-		) || false;
+		const isUserSubscribed = subscriptions?.some((subscription) => {
+			const userUsername = user?.[0]?.username;
+			return userUsername && subscription.username === userUsername;
+		}) || false;
 		setIsSub(isUserSubscribed);
 	};
 	return (

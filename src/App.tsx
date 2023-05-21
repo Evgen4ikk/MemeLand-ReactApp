@@ -17,7 +17,7 @@ function App() {
   return (
 		<div className='App'>
 			<AuthContext.Provider value={{ search, setSearch }}>
-        <div className='pb-[45px]'>
+        <div className='pb-[85px]'>
           <Navbar />
         </div>
           <div className='mb-10'>

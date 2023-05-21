@@ -8,7 +8,7 @@ const Home = () => {
   const { isLoading, data } = api.useFetchAllMemesQuery('')
 
   return (
-    <div className="mx-auto pt-10 flex">
+    <div className="mx-auto flex">
       <Menu />
 			<div className={`${classes.container} mx-auto pl-6`}>
 				{isLoading ? (

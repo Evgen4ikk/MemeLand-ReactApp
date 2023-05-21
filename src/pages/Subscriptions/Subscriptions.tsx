@@ -1,17 +1,29 @@
 import { FaRegSadTear } from 'react-icons/fa'
 import { api } from '../../store/api/api'
 import Menu from '../../components/Menu'
+import SubItem from '../../components/SubItem'
+import classes from './/subscriptions.module.css'
 
 const Subscriptions = () => {
-	const { data: subscriptions } = api.useFetchSubscriptionsQuery('')
+	const { data: subscriptions, isLoading } = api.useFetchSubscriptionsQuery('')
 
-	if (subscriptions?.length > 0) {
+	if (subscriptions && subscriptions?.length > 0) {
 		return (
-			<div>
+			<div className='max-w-[1280px] mx-auto'>
 				<Menu />
-				<ul className='flex items-center justify-center mt-10'>
-					user
-				</ul>
+				<div className={`${classes.container} mx-auto pl-6`}>
+				{isLoading ? (
+					<div>Загрузка...</div>
+				) : subscriptions ? (
+					subscriptions.map((subscribe) => (
+						<div key={subscribe.id}>
+							<SubItem subscriptions={subscribe}/>
+						</div>
+					))
+				) : (
+					<div>Ничего не найдено :(</div>
+				)}
+				</div>
 			</div>
 		)
 	} else {

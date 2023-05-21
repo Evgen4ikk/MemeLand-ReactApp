@@ -20,7 +20,7 @@ const Meme: React.FC = () => {
   const { data: authorData } = api.useFetchUserIdMemeQuery(authorId);
 
   return (
-    <div className="w-[1100px] mx-auto pt-8">
+    <div className="w-[1100px] mx-auto">
       <div className="flex text-[#f1f1f1]">
         <div>
           <div>

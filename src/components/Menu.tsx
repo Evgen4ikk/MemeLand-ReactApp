@@ -20,7 +20,7 @@ const Menu = () => {
   };
 
   return (
-    <div className='fixed top-[60px] mx-1 z-10 text-white'>
+    <div className='fixed left-0 top-[60px] mx-1 z-10 text-white'>
       <Link to='/'>
         <div className='flex items-center flex-col justify-center outline-none rounded-lg pt-4 pb-3.5 hover:bg-[#272727] text-[10px] px-3'>
           <button className='px-2' onClick={changeIcon}>

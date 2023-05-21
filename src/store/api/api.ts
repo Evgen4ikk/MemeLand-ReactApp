@@ -121,7 +121,7 @@ export const api = createApi({
 				type: 'meme'
 			}]
 		}),
-		fetchUserMeme: build.query<IUsers[], number>({
+		fetchUserId: build.query<IUsers[], number>({
 			query: (userId: number) => ({
 				url: `/users?id=${userId}`
 			})
@@ -154,7 +154,7 @@ export const api = createApi({
 				method: 'DELETE'
 			})
 		}),
-		fetchSubscriptions: build.query<any, string>({
+		fetchSubscriptions: build.query<IUsers[], string>({
 			query: () => ({
 				url: '/subscriptions'
 			})
