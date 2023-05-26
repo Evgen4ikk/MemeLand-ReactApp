@@ -5,7 +5,7 @@ import { userIdAction } from '../store/slice/getUserId'
 
 const actions = {
 	...memeIdAction,
-	...userIdAction,
+	...userIdAction
 }
 
 export const useActions = () => {

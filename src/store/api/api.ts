@@ -148,11 +148,21 @@ export const api = createApi({
 				body: user
 			})
 		}),
-		unSub: build.mutation<IUsers, number | undefined>({
+		unSubUser: build.mutation<IUsers, number | undefined>({
 			query: (id: number) => ({
 				url: `/subscriptions/${id}`,
 				method: 'DELETE'
 			})
+		}),
+		updateUser: build.mutation<IUsers, IUsers>({
+			query: (user) => ({
+				url: `/users/${user.id}`,
+				method: 'PUT',
+				body: user
+			}),
+			invalidatesTags: () => [{
+				type: 'meme'
+			}]
 		}),
 		fetchSubscriptions: build.query<IUsers[], string>({
 			query: () => ({

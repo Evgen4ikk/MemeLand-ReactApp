@@ -96,33 +96,33 @@ const MemeLikes: React.FC<MemeLikesProps> = ( { memeId } ) => {
 
 	return (
 		<div className='flex items-center ml-[15%]'>
-							<div onLoad={likedCheck} className='bg-[#272727] rounded-s-[40px] px-1 py-1'>
-								{!isLiked
-									? <button onClick={handleLiked} className='flex items-center px-2 py-1 border-e border-[#525252]'>
-										<AiOutlineLike />
-										<span className='pl-2 pr-1'>
-											{data?.likes}
-										</span>
-									</button>
-									:	<button onClick={handleUnLiked} className='flex items-center px-2 py-1 rounded-s-[40px] border-e border-[#525252]'>
-											<AiFillLike />
-											<span className='pl-2 pr-1'>
-												{data?.likes}
-											</span>
-									</button>
-								}
-							</div>
-							<div className='bg-[#272727] rounded-e-[40px] pl-1 pr-2 py-1'>
-								{!disliked
-									? <button onClick={addToDis} className='px-2 py-2 rounded-e-[40px]'>
-										<AiOutlineDislike />
-									</button>
-									: <button onClick={removeToDis} className='px-2 py-2 rounded-e-[40px]'>
-										<AiFillDislike />
-									</button>
-								}
-							</div>
-					</div>
+      <div onLoad={likedCheck} className='bg-[#272727] rounded-s-[40px] px-1 py-1'>
+        {!isLiked
+          ? <button onClick={handleLiked} className='flex items-center px-2 py-1 border-e border-[#525252]'>
+            <AiOutlineLike />
+            <span className='pl-2 pr-1'>
+              {data?.likes}
+            </span>
+          </button>
+          :	<button onClick={handleUnLiked} className='flex items-center px-2 py-1 rounded-s-[40px] border-e border-[#525252]'>
+              <AiFillLike />
+              <span className='pl-2 pr-1'>
+                {data?.likes}
+              </span>
+          </button>
+        }
+      </div>
+      <div className='bg-[#272727] rounded-e-[40px] pl-1 pr-2 py-1'>
+        {!disliked
+          ? <button onClick={addToDis} className='px-2 py-2 rounded-e-[40px]'>
+            <AiOutlineDislike />
+          </button>
+          : <button onClick={removeToDis} className='px-2 py-2 rounded-e-[40px]'>
+            <AiFillDislike />
+          </button>
+        }
+      </div>
+    </div>
 	)
 }
 

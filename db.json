@@ -224,67 +224,14 @@
       "subscribers": 0
     }
   ],
-  "comments": [
-    {
-      "memeId": "1",
-      "username": "User",
-      "title": "АХХАХАХАХАХА😙😙😙😙😙😙😙😙😙😙😂😂😂😂😂😂😂😂😂😂",
-      "time": "21.05.2023, 23:29:02",
-      "id": 1
-    }
-  ],
-  "answers": [
-    {
-      "memeId": "1",
-      "commentId": 1,
-      "username": "User",
-      "title": "ВНАТУРЕ",
-      "time": "21.05.2023, 23:29:09",
-      "id": 1
-    }
-  ],
+  "comments": [],
+  "answers": [],
   "subscriptions": [
-    {
-      "id": 2,
-      "username": "GamerGorilla",
-      "avatar": "https://avatars.mds.yandex.net/i?id=6f6a93f3b904d9bf0de3331072d853fa-4389782-images-thumbs&n=13",
-      "subscribers": 6
-    },
-    {
-      "id": 3,
-      "username": "TechTiger",
-      "avatar": "https://i.pinimg.com/originals/b8/d5/41/b8d541377f00bbf38abe1ab1823c3d7e.jpg",
-      "subscribers": 4
-    },
-    {
-      "id": 4,
-      "username": "MusicMonkey",
-      "avatar": "https://avatars.yandex.net/get-music-content/4382102/563616f3.a.17663910-1/m1000x1000?webp=false",
-      "subscribers": 1
-    },
-    {
-      "id": 7,
-      "username": "FashionFalcon",
-      "avatar": "https://s1.vimetop.ru/guild/bg/329.jpg?_=5503526",
-      "subscribers": 0
-    },
-    {
-      "id": 9,
-      "username": "FitnessFeline",
-      "avatar": "https://66.media.tumblr.com/7d11f95cecb93223a649c38583195a8c/tumblr_pc16npB7Hu1rsfjkqo1_1280.png",
-      "subscribers": 0
-    },
-    {
-      "id": 8,
-      "username": "FoodieFrog",
-      "avatar": "https://sun9-48.userapi.com/impf/KYX7bHJFysBSePSZceY774Qeh-ndifbhj5A46A/f-tn-QHZGMc.jpg?size=1122x1122&quality=96&sign=f3ce52b1470e11ebb93e272b79e93f64&c_uniq_tag=l-WNAXO9yCdExh4t6c4xjvWX7x7EQShNkze8jGcYlr0&type=album",
-      "subscribers": 0
-    },
     {
       "id": 1,
       "username": "PixelPenguin",
       "avatar": "https://bumper-stickers.ru/47109-thickbox_default/pingvin.jpg",
-      "subscribers": 0
+      "subscribers": 996
     }
   ],
   "liked": [],

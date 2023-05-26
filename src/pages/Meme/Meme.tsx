@@ -6,6 +6,7 @@ import MemeLikes from '../../components/MemeLikes';
 import MemeSub from '../../components/MemeSub';
 import RelatedMemes from '../../components/RelatedMemes';
 import { api } from '../../store/api/api';
+import CustomProgressBar from '../../components/UI/CustomProgressBar/CustomProgressBar'
 
 const Meme: React.FC = () => {
   const { id } = useParams<{ id: any }>();
@@ -17,10 +18,25 @@ const Meme: React.FC = () => {
     setAuthorId(memeData?.userId);
   }, [memeData?.userId]);
 
-  const { data: authorData } = api.useFetchUserIdMemeQuery(authorId);
+  const { data: authorData } = api.useFetchUserIdQuery(authorId);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 500 );
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   return (
     <div className="w-[1100px] mx-auto">
+      {loading ? (
+        <CustomProgressBar />
+      ) : (
       <div className="flex text-[#f1f1f1]">
         <div>
           <div>
@@ -45,6 +61,7 @@ const Meme: React.FC = () => {
           <RelatedMemes memeId={parseInt(id)} />
         </div>
       </div>
+      )}
     </div>
   );
 };
