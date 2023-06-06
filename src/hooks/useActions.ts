@@ -1,11 +1,9 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { memeIdAction } from '../store/slice/getMemeId'
-import { userIdAction } from '../store/slice/getUserId'
+import { memeAction } from '../store/slice/memeSlice'
 
 const actions = {
-	...memeIdAction,
-	...userIdAction
+	...memeAction,
 }
 
 export const useActions = () => {

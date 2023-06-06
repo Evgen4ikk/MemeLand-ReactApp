@@ -12,6 +12,7 @@ import Meme from './pages/Meme/Meme'
 import MyProfile from './pages/MyProfile/MyProfile'
 import Subscriptions from './pages/Subscriptions/Subscriptions'
 import UserProfile from './pages/UserProfile/UserProfile'
+import Liked from './pages/Liked/Liked'
 
 const App: FC = () => {
   const [search, setSearch] = useState('');
@@ -48,6 +49,7 @@ const App: FC = () => {
             <Route path='/*' element={<Error />} />
             <Route path='/subscriptions' element={<Subscriptions />} />
             <Route path='/library' element={<Library />} />
+            <Route path='/liked' element={<Liked />} />
           </Routes>
         </div>
       </AuthContext.Provider>

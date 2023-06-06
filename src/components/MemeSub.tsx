@@ -1,98 +1,65 @@
 import { Avatar } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from '../store/api/api'
-import { IUsers } from '../types/IUsers'
+import { memeAPI } from '../store/api/memeAPI'
+import { userAPI } from '../store/api/userAPI'
 
 interface MemeSubProps {
-  memeId: number;
+	memeId: number
 	userId: any
 }
 
 const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
-  // Получаем данные мема
-	const { data } = api.useFetchMemeIdQuery(memeId);
+	// Получаем данные мема
+	const { data } = memeAPI.useFetchMemeIdQuery(memeId)
 
-  // Получаем данные пользователя
-	const { data: user } = api.useFetchUserIdMemeQuery(userId);
+	// Получаем данные пользователя
+	const { data: user } = userAPI.useFetchUserIdMemeQuery(userId)
 
 	// Получаем данные моего профиля
-	const { data: myProfile } = api.useFetchProfileDataQuery('')
-
-	// Состояние подписки
-	const [isSub, setIsSub] = useState<boolean>(false);
+	const { data: myProfile } = userAPI.useFetchProfileDataQuery('')
 
 	// Получаем список подписок
-	const { data: subscriptions, refetch } = api.useFetchSubscriptionsQuery('');
-  
+	const { data: subscriptions, refetch } = userAPI.useFetchSubscriptionsQuery('')
+
 	// Функция подписки на пользователя
-	const [subOnUser] = api.useSubUserMutation();
-  
+	const [subOnUser] = userAPI.useSubUserMutation()
+
 	// Функция отписки от пользователя
-	const [unSubUser] = api.useUnSubUserMutation();
-  
-	// Функция обновления данных пользователя
-	const [userUpdate] = api.useUpdateUserMutation()
-
-	// Обновление данных пользователя
-	const handleUpdateUser = (user: IUsers) => {
-    userUpdate(user);
-  };
-
-  // Обработчик подписки
-  const handleSub = async () => {
-		// Увеличиваем количество подписчиков на 1
-		const updatedUser: IUsers = {
-			...user?.[0],
-			subscribers: (user?.[0]?.subscribers || 0) + 1
-		};
-
-		await handleUpdateUser(updatedUser);
-
-		// Выполняем подписку на пользователя
-    await subOnUser({
+	const [unSubUser] = userAPI.useUnSubUserMutation()
+	// Обработчик подпискиx
+	const handleSub = async () => {
+		await subOnUser({
 			id: user?.[0]?.id,
 			username: user?.[0]?.username,
 			avatar: user?.[0]?.avatar,
-			subscribers: updatedUser.subscribers
-		});
-    
-    // Устанавливаем состояние подписки на true
-    setIsSub(true);
-  };
+			subscribers: user?.[0]?.subscribers,
+		})
 
-  // Обработчик отписки
-  const handleUnSub = async () => {
-		// Уменьшаем количество подписчиков на 1
-		const updatedUser: IUsers = {
-			...user?.[0],
-			subscribers: (user?.[0]?.subscribers || 0) - 1
-		};
+		setIsSub(true)
+	}
 
-		await handleUpdateUser(updatedUser);
+	// Обработчик отписки
+	const handleUnSub = async () => {
+		await unSubUser(user?.[0]?.id)
+		setIsSub(false)
+	}
 
-		// Выполняем отписку от пользователя
-		await unSubUser(user?.[0]?.id);
+	const subCheck = () => {
+		return subscriptions && subscriptions.some(sub => sub.id === user?.[0]?.id)
+	}
 
-    // Устанавливаем состояние подписки на false
-    setIsSub(false);
-  };
+	const [isSub, setIsSub] = useState(subCheck())
 
-	// Проверяем, подписан ли текущий пользователь на пользователя
 	useEffect(() => {
-    if (subscriptions && subscriptions.some((sub) => sub.id === userId)) {
-      setIsSub(true);
-    } else {
-      setIsSub(false);
-    }
-  }, [subscriptions, userId]);
+		setIsSub(subCheck())
+		refetch()
+	}, [subscriptions, user?.[0]?.id])
 
 	return (
 		<div className='flex'>
 			<div className='px-2 py-1'>
-				<Link 
-					to={`/user/${data?.userId}`}
-				>
+				<Link to={`/user/${data?.userId}`}>
 					<Avatar src={user && user[0]?.avatar} />
 				</Link>
 			</div>
@@ -104,20 +71,22 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 					>
 						{data?.author}
 					</Link>
-					<div>
-						{user?.[0]?.subscribers} подписчиков
-					</div>
+					<div>{user?.[0]?.subscribers} подписчиков</div>
 				</div>
 			</div>
-			<div 
-				className='flex items-center'
-			>
+			<div className='flex items-center'>
 				{!isSub ? (
-					<button onClick={handleSub} className='h-[36px] px-4 text-sm bg-white text-[#0f0f0f] rounded-[18px] font-semibold cursor-pointer hover:bg-[#d9d9d9]'>
+					<button
+						onClick={handleSub}
+						className='h-[36px] px-4 text-sm bg-white text-[#0f0f0f] rounded-[18px] font-semibold cursor-pointer hover:bg-[#d9d9d9]'
+					>
 						Подписаться
 					</button>
 				) : (
-					<button onClick={handleUnSub} className='h-[36px] px-4 text-sm bg-[#333] text-[#f1f1f1] rounded-[18px] font-semibold cursor-pointer hover:bg-[#454649]'>
+					<button
+						onClick={handleUnSub}
+						className='h-[36px] px-4 text-sm bg-[#333] text-[#f1f1f1] rounded-[18px] font-semibold cursor-pointer hover:bg-[#454649]'
+					>
 						Вы подписаны
 					</button>
 				)}
@@ -126,4 +95,4 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 	)
 }
 
-export default MemeSub;
+export default MemeSub

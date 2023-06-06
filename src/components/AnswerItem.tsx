@@ -3,12 +3,12 @@ import React, { useRef, useState } from 'react'
 import { BsPencil, BsTrash } from 'react-icons/bs'
 import { GoKebabVertical } from 'react-icons/go'
 import { useClickAway } from 'react-use'
-import { api } from '../store/api/api'
 import { IAnswers } from '../types/IAnswer'
 import { IComments } from '../types/IComments'
 import { IProfile } from '../types/IProfile'
 import DislikeButton from './UI/DislikeButton'
 import LikeButton from './UI/LikeButton'
+import { memeAPI } from '../store/api/memeAPI'
 
 interface AnswerItemProps {
   memeId: number;
@@ -18,9 +18,9 @@ interface AnswerItemProps {
 
 const AnswerItem: React.FC<AnswerItemProps> = ({memeId, comment, myProfile}) => {
 
-	const { data: answers } = api.useFetchAnswersMemeIdQuery(memeId);
+	const { data: answers } = memeAPI.useFetchAnswersMemeIdQuery(memeId);
 
-	const [deleteAnswer] = api.useDeleteAnswerMutation()
+	const [deleteAnswer] = memeAPI.useDeleteAnswerMutation()
 
 	const handleDeleteAnswer = async (answerId: number) => {
     await deleteAnswer({ id: answerId } as IAnswers);

@@ -3,10 +3,10 @@ import React, { useRef, useState } from 'react'
 import { BsPencil, BsTrash } from 'react-icons/bs'
 import { GoKebabVertical } from 'react-icons/go'
 import { useClickAway } from 'react-use'
-import { api } from '../store/api/api'
 import { IComments } from '../types/IComments'
 import { IProfile } from '../types/IProfile'
 import MemeAnswer from './MemeAnswer'
+import { memeAPI } from '../store/api/memeAPI'
 
 interface CommItemProps {
   memeId: number;
@@ -16,7 +16,7 @@ interface CommItemProps {
 
 const CommItem: React.FC<CommItemProps> = ({memeId, myProfile, comments}) => {
 
-	const [deleteComment] = api.useDeleteCommentMutation(); 
+	const [deleteComment] = memeAPI.useDeleteCommentMutation(); 
 	
 	const [selectedCommentId, setSelectedCommentId] = useState<number>();
 

@@ -1,69 +1,77 @@
-import React, { useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
-import { useParams } from 'react-router-dom';
-import MemeComm from '../../components/MemeComm';
-import MemeLikes from '../../components/MemeLikes';
-import MemeSub from '../../components/MemeSub';
-import RelatedMemes from '../../components/RelatedMemes';
-import { api } from '../../store/api/api';
+import React, { useEffect, useState } from 'react'
+import ReactPlayer from 'react-player'
+import { useParams } from 'react-router-dom'
+import MemeComm from '../../components/MemeComm'
+import MemeLikes from '../../components/MemeLikes'
+import MemeSub from '../../components/MemeSub'
+import RelatedMemes from '../../components/RelatedMemes'
 import CustomProgressBar from '../../components/UI/CustomProgressBar/CustomProgressBar'
+import { memeAPI } from '../../store/api/memeAPI'
+import { userAPI } from '../../store/api/userAPI'
 
 const Meme: React.FC = () => {
-  const { id } = useParams<{ id: any }>();
-  const { data: memeData } = api.useFetchMemeIdQuery(id);
+  
+	const { id } = useParams<{ id: any }>()
 
-  const [authorId, setAuthorId] = useState<any>(null);
+	const { data: memeData } = memeAPI.useFetchMemeIdQuery(id)
 
-  useEffect(() => {
-    setAuthorId(memeData?.userId);
-  }, [memeData?.userId]);
+	const [authorId, setAuthorId] = useState<any>(null)
 
-  const { data: authorData } = api.useFetchUserIdQuery(authorId);
+	useEffect(() => {
+		setAuthorId(memeData?.userId)
+	}, [memeData?.userId])
 
-  const [loading, setLoading] = useState(true);
+	const { data: authorData } = userAPI.useFetchUserIdQuery(authorId)
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 500 );
+	const [loading, setLoading] = useState(true)
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setLoading(false)
+		}, 1000)
 
-  return (
-    <div className="w-[1100px] mx-auto">
-      {loading ? (
-        <CustomProgressBar />
-      ) : (
-      <div className="flex text-[#f1f1f1]">
-        <div>
-          <div>
-            <ReactPlayer url={memeData?.video} controls={true} width={760} height={400} />
-          </div>
-          <div className="font-semibold text-[24px] py-2">
-            <h1>{memeData?.name}</h1>
-          </div>
-          <div className="flex items-center">
-            <div>
-              {authorData && <MemeSub memeId={id} userId={authorId} />}
-            </div>
-            <div className="flex items-center ml-[15%]">
-              <MemeLikes memeId={id} />
-            </div>
-          </div>
-          <div className="max-w-[800px]">
-            <MemeComm memeId={id} />
-          </div>
-        </div>
-        <div className="pl-5">
-          <RelatedMemes memeId={parseInt(id)} />
-        </div>
-      </div>
-      )}
-    </div>
-  );
-};
+		return () => {
+			clearTimeout(timeout)
+		}
+	}, [])
 
-export default Meme;
+	return (
+		<div className='w-[1100px] mx-auto'>
+			{loading ? (
+				<CustomProgressBar />
+			) : (
+				<div className='flex text-[#f1f1f1]'>
+					<div>
+						<div>
+							<ReactPlayer
+								url={memeData?.video}
+								controls={true}
+								width={760}
+								height={400}
+							/>
+						</div>
+						<div className='font-semibold text-[24px] py-2'>
+							<h1>{memeData?.name}</h1>
+						</div>
+						<div className='flex items-center'>
+							<div>
+								{authorData && <MemeSub memeId={id} userId={authorId} />}
+							</div>
+							<div className='flex items-center ml-[15%]'>
+								<MemeLikes memeId={id} />
+							</div>
+						</div>
+						<div className='max-w-[800px]'>
+							<MemeComm memeId={id} />
+						</div>
+					</div>
+					<div className='pl-5'>
+						<RelatedMemes memeId={parseInt(id)} />
+					</div>
+				</div>
+			)}
+		</div>
+	)
+}
+
+export default Meme

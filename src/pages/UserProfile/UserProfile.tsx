@@ -1,78 +1,68 @@
-import { Avatar } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Menu from '../../components/Menu';
-import { api } from '../../store/api/api';
-import classes from './userProfile.module.css';
-import MemeItem from '../../components/MemeItem';
+import { Avatar } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import MemeItem from '../../components/MemeItem'
+import Menu from '../../components/Menu'
 import CustomProgressBar from '../../components/UI/CustomProgressBar/CustomProgressBar'
-import { IUsers } from '../../types/IUsers'
+import classes from './userProfile.module.css'
+import { userAPI } from '../../store/api/userAPI'
 
 const UserProfile = () => {
-  const { id } = useParams<{ id: any }>();
+	const { id } = useParams<{ id: any }>()
 
-  const { data: user, isLoading } = api.useFetchUserIdQuery(id);
+	const { data: user, isLoading } = userAPI.useFetchUserIdQuery(id)
 
-  const { data: userMemes } = api.useFetchMemesUserIdQuery(id);
+	const { data: userMemes } = userAPI.useFetchMemesUserIdQuery(id)
 
-  const { data: subscriptions } = api.useFetchSubscriptionsQuery('');
-  const [subOnUser] = api.useSubUserMutation();
-  const [unSubUser] = api.useUnSubUserMutation();
-	const [updateUser] = api.useUpdateUserMutation(id)
-
-	const handleUpdateUser = (user: IUsers) => {
-    updateUser(user);
-  };
+	const { data: subscriptions, refetch } = userAPI.useFetchSubscriptionsQuery('')
+	const [subOnUser] = userAPI.useSubUserMutation()
+	const [unSubUser] = userAPI.useUnSubUserMutation()
 
 	const handleSub = async () => {
-		const updateUser: any = user && user.length > 0
-		&& { ...user[0], subscribers: (user[0]?.subscribers || 0) + 1 } as IUsers;
-		await handleUpdateUser(updateUser);
-    await subOnUser({
+		await subOnUser({
 			id: user?.[0]?.id,
 			username: user?.[0]?.username,
 			avatar: user?.[0]?.avatar,
-			subscribers: user?.[0]?.subscribers + 1
-		});
-    setIsSub(true);
-  };
+			subscribers: user?.[0]?.subscribers,
+		})
+		setIsSub(true)
+	}
 
-  const handleUnSub = async () => {
-		await unSubUser(user?.[0]?.id);
-		const updateUser: any = user && user.length > 0
-		&& { ...user[0], subscribers: (user[0]?.subscribers || 0) - 1 } as IUsers;
-    await handleUpdateUser(updateUser)
-    setIsSub(false);
-  };
+	const handleUnSub = async () => {
+		await unSubUser(user?.[0]?.id)
+		setIsSub(false)
+	}
 
-  const [isSub, setIsSub] = useState<boolean>(false);
-
-	const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 500 );
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
+	const subCheck = () => {
+		return subscriptions && subscriptions.some(sub => sub.id === user?.[0]?.id)
+	}
+	
+	const [isSub, setIsSub] = useState(subCheck())
 
 	useEffect(() => {
-    if (subscriptions && subscriptions.some((sub) => sub.id === user?.[0]?.id)) {
-      setIsSub(true);
-    } else {
-      setIsSub(false);
-    }
-  }, [subscriptions, user?.[0]?.id]);
+		setIsSub(subCheck())
+		refetch()
+	}, [subscriptions, user?.[0]?.id])
 
-  return (
-    <div className={`pl-[30px] mx-auto ${classes.container}`}>
-      <Menu />
+	const [loading, setLoading] = useState(true)
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setLoading(false)
+		}, 500)
+
+		return () => {
+			clearTimeout(timeout)
+		}
+	}, [])
+
+
+	return (
+		<div className={`pl-[30px] mx-auto ${classes.container}`}>
+			<Menu />
 			{loading ? (
-        <CustomProgressBar />
-      ) : (
+				<CustomProgressBar />
+			) : (
 				<>
 					{isLoading ? (
 						<div>Loading...</div>
@@ -91,7 +81,9 @@ const UserProfile = () => {
 											{user?.[0]?.username}
 										</div>
 										<div className='text-sm text-[#aaa]'>
-											<span className='pr-2'>{user?.[0]?.subscribers} подписчиков</span>
+											<span className='pr-2'>
+												{user?.[0]?.subscribers} подписчиков
+											</span>
 											<span>{userMemes?.length} видео</span>
 										</div>
 									</div>
@@ -114,13 +106,18 @@ const UserProfile = () => {
 									</div>
 								</div>
 							</div>
-							<div className={`${classes.line} border-b border-[#3f3f3f] pt-4`} />
+							<div
+								className={`${classes.line} border-b border-[#3f3f3f] pt-4`}
+							/>
 							<div className='flex mx-auto'>
 								{isLoading ? (
 									<div>Загрузка...</div>
 								) : userMemes ? (
-									userMemes.map((meme) => (
-										<div key={meme.id} className={`${classes.meme_container} pt-10 mx-auto`}>
+									userMemes.map(meme => (
+										<div
+											key={meme.id}
+											className={`${classes.meme_container} pt-10 mx-auto`}
+										>
 											<MemeItem meme={meme} />
 										</div>
 									))
@@ -132,8 +129,8 @@ const UserProfile = () => {
 					)}
 				</>
 			)}
-    </div>
-  );
-};
+		</div>
+	)
+}
 
-export default UserProfile;
+export default UserProfile

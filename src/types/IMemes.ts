@@ -9,3 +9,7 @@ export interface IMemes {
 	views: number
 	likes: any
 }
+
+export interface IMemesHistory extends IMemes{
+	memeId: number
+}

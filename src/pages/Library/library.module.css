@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  justify-items: center;
+}
+
+.grid_item {
+  width: 100%;
+  padding: 1rem;
+}
+

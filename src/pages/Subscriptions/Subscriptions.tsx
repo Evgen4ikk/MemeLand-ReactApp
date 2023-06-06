@@ -1,51 +1,54 @@
+import { useEffect, useState } from 'react'
 import { FaRegSadTear } from 'react-icons/fa'
-import { api } from '../../store/api/api'
 import Menu from '../../components/Menu'
 import SubItem from '../../components/SubItem'
-import classes from './/subscriptions.module.css'
-import { useEffect, useState } from 'react'
 import CustomProgressBar from '../../components/UI/CustomProgressBar/CustomProgressBar'
+import { userAPI } from '../../store/api/userAPI'
+import classes from './/subscriptions.module.css'
 
 const Subscriptions = () => {
-
-	const { data: subscriptions, isLoading , refetch } = api.useFetchSubscriptionsQuery('')
+	const {
+		data: subscriptions,
+		isLoading,
+		refetch,
+	} = userAPI.useFetchSubscriptionsQuery('')
 
 	useEffect(() => {
 		refetch()
 	}, [subscriptions])
 
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setLoading(false)
+		}, 1000)
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
-	
+		return () => {
+			clearTimeout(timeout)
+		}
+	}, [])
+
 	if (subscriptions && subscriptions?.length > 0) {
 		return (
 			<div className='max-w-[1280px] mx-auto'>
 				<Menu />
 				{loading ? (
-        <CustomProgressBar />
-      	) : (
+					<CustomProgressBar />
+				) : (
 					<>
 						<div className={`${classes.container} mx-auto pl-6`}>
-						{isLoading ? (
-							<div>Загрузка...</div>
-						) : subscriptions ? (
-							subscriptions.map((subscribe) => (
-								<div key={subscribe.id}>
-									<SubItem subscriptions={subscribe}/>
-								</div>
-							))
-						) : (
-							<div>Ничего не найдено :(</div>
-						)}
+							{isLoading ? (
+								<div>Загрузка...</div>
+							) : subscriptions ? (
+								subscriptions.map(subscribe => (
+									<div key={subscribe.id}>
+										<SubItem subscriptions={subscribe} />
+									</div>
+								))
+							) : (
+								<div>Ничего не найдено :(</div>
+							)}
 						</div>
 					</>
 				)}
@@ -56,8 +59,8 @@ const Subscriptions = () => {
 			<div>
 				<Menu />
 				{loading ? (
-        <CustomProgressBar />
-      	) : (
+					<CustomProgressBar />
+				) : (
 					<>
 						<div className='mt-20 flex flex-col justify-center items-center'>
 							<FaRegSadTear className='text-gray-400 w-20 h-20' />
