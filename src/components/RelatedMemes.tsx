@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { memeAPI } from '../store/api/memeAPI'
-import { IMemes } from '../types/IMemes'
+import { IMemes, IMemesHistory } from '../types/IMemes'
 import RelatedMemeItem from './RelatedMemeItem'
 
 interface RelatedMemesProps {
@@ -14,19 +14,32 @@ const RelatedMemes: FC<RelatedMemesProps> = ({ memeId }) => {
 
 	const [addToHistory] = memeAPI.useAddToHistoryMutation()
 
-	const handleHistory = async (meme: IMemes, index: number) => {
-		await addToHistory({
-			id: index,
-			memeId: meme.id,
-			author: meme.author,
-			image: meme.image,
-			likes: meme.likes,
-			myMeme: meme.myMeme,
-			name: meme.name,
-			userId: meme.userId,
-			video: meme.video,
-			views: meme.views,
-		})
+	const handleHistory = async (meme: IMemes) => {
+		if (meme.myMeme === true) {
+			await addToHistory({
+				memeId: meme.id,
+				author: meme.author,
+				image: meme.image,
+				likes: meme.likes,
+				myMeme: true,
+				name: meme.name,
+				userId: meme.userId,
+				video: meme.video,
+				views: meme.views,
+			} as IMemesHistory)
+		} else {
+			await addToHistory({
+				memeId: meme.id,
+				author: meme.author,
+				image: meme.image,
+				likes: meme.likes,
+				myMeme: false,
+				name: meme.name,
+				userId: meme.userId,
+				video: meme.video,
+				views: meme.views,
+			} as IMemesHistory)
+		}
 	}
 
 	return (
@@ -34,11 +47,11 @@ const RelatedMemes: FC<RelatedMemesProps> = ({ memeId }) => {
 			{isLoading ? (
 				<div>Загрузка...</div>
 			) : filteredMemes && filteredMemes.length > 0 ? (
-				filteredMemes.map((meme: IMemes,index: number) => (
+				filteredMemes.map((meme: IMemes) => (
 					<div
 						key={meme.id}
 						className='pb-3'
-						onClick={() => handleHistory(meme, index)}
+						onClick={() => handleHistory(meme)}
 					>
 						<RelatedMemeItem meme={meme} />
 					</div>

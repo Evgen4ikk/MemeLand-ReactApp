@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import MemeItem from '../../components/MemeItem'
 import Menu from '../../components/Menu'
 import CustomProgressBar from '../../components/UI/CustomProgressBar/CustomProgressBar'
@@ -6,7 +6,7 @@ import { memeAPI } from '../../store/api/memeAPI'
 import { IMemes, IMemesHistory } from '../../types/IMemes'
 import classes from './home.module.css'
 
-const Home = () => {
+const Home:FC = () => {
 	const { isLoading, data: memes } = memeAPI.useFetchAllMemesQuery('')
 
 	const [loading, setLoading] = useState(true)

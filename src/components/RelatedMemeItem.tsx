@@ -1,21 +1,17 @@
-import { FC , useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { FC, useEffect } from 'react'
 import { IMemes } from '../types/IMemes'
 
-interface RelatedMemeItemProps { 
-  meme: IMemes
+interface RelatedMemeItemProps {
+	meme: IMemes
 }
 
 const RelatedMemeItem: FC<RelatedMemeItemProps> = ({ meme }) => {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [meme.id])
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [meme.id]);
-
-  return (
-		<Link 
-			to={`/meme/${meme.id}`}
-		>
+	return (
+		<a href={`/meme/${meme.id}`}>
 			<div className='w-[426px] flex'>
 				<div>
 					<img src={meme.image} className='w-[168px] h-[94px] mr-2' />
@@ -24,16 +20,12 @@ const RelatedMemeItem: FC<RelatedMemeItemProps> = ({ meme }) => {
 					<span className='max-h-[40px] overflow-hidden text-sm'>
 						{meme.name}
 					</span>
-					<span className='text-xs text-[#AAA] py-1'>
-						{meme.author}
-					</span>
-					<span className='text-xs text-[#AAA]'>
-						{meme.views} просмотров
-					</span>
+					<span className='text-xs text-[#AAA] py-1'>{meme.author}</span>
+					<span className='text-xs text-[#AAA]'>{meme.views} просмотров</span>
 				</div>
 			</div>
-  	</Link>
-  )
+		</a>
+	)
 }
 
-export default RelatedMemeItem;
+export default RelatedMemeItem

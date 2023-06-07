@@ -243,6 +243,42 @@
   "liked": [],
   "history": [
     {
+      "memeId": 2,
+      "author": "GamerGorilla",
+      "image": "https://ru-static.z-dn.net/files/d07/35b0ee6d583077e63bce6a992e81455c.jpg",
+      "likes": 1,
+      "myMeme": false,
+      "name": "Капибара, капибара, капибара",
+      "userId": 2,
+      "video": "https://youtu.be/3axFC8wYjB8",
+      "views": 0,
+      "id": 1
+    },
+    {
+      "memeId": 4,
+      "author": "MusicMonkey",
+      "image": "https://i.ytimg.com/vi/FIE84TeDOK8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgYSg_MA8=&amp;rs=AOn4CLC4QLs5_GfgX9Yyj-UahTjwc-mmSA",
+      "likes": 53,
+      "myMeme": false,
+      "name": "Обращение к шароёбам",
+      "userId": 4,
+      "video": "https://www.youtube.com/watch?v=4Qx5n6_W_24",
+      "views": 0,
+      "id": 2
+    },
+    {
+      "memeId": 8,
+      "author": "FoodieFrog",
+      "image": "https://a.d-cd.net/nKBIHZhlFgJVdWz8-URPP-omY4M-1920.jpg",
+      "likes": 2133,
+      "myMeme": false,
+      "name": "Миша все х***я давай по новой",
+      "userId": 8,
+      "video": "https://youtu.be/IkCh8VfN2d4",
+      "views": 0,
+      "id": 3
+    },
+    {
       "memeId": 1,
       "author": "PixelPenguin",
       "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
@@ -251,42 +287,6 @@
       "name": "Дверь мне запилил",
       "userId": 1,
       "video": "https://youtu.be/WnhjDV5ZUL0",
-      "views": 0,
-      "id": 1
-    },
-    {
-      "memeId": 2,
-      "author": "GamerGorilla",
-      "image": "https://ru-static.z-dn.net/files/d07/35b0ee6d583077e63bce6a992e81455c.jpg",
-      "likes": 1,
-      "myMeme": false,
-      "name": "Капибара, капибара, капибара",
-      "userId": 2,
-      "video": "https://youtu.be/3axFC8wYjB8",
-      "views": 0,
-      "id": 2
-    },
-    {
-      "memeId": 3,
-      "author": "TechTiger",
-      "image": "https://i.ytimg.com/vi/qsHeemDhubo/maxresdefault.jpg",
-      "likes": 112,
-      "myMeme": false,
-      "name": "Стартуем! Наталья морская пехота!",
-      "userId": 3,
-      "video": "https://youtu.be/pWJOxvcp7xk",
-      "views": 0,
-      "id": 3
-    },
-    {
-      "memeId": 2,
-      "author": "GamerGorilla",
-      "image": "https://ru-static.z-dn.net/files/d07/35b0ee6d583077e63bce6a992e81455c.jpg",
-      "likes": 1,
-      "myMeme": false,
-      "name": "Капибара, капибара, капибара",
-      "userId": 2,
-      "video": "https://youtu.be/3axFC8wYjB8",
       "views": 0,
       "id": 4
     }

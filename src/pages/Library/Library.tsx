@@ -5,8 +5,7 @@ import Menu from '../../components/Menu'
 import CustomProgressBar from '../../components/UI/CustomProgressBar/CustomProgressBar'
 import { memeAPI } from '../../store/api/memeAPI'
 import { IMemes } from '../../types/IMemes'
-import LibraryHistoryItem from './Histroy/LibraryHistoryItem'
-import LibraryLikedItem from './Liked/LibraryLikedItem'
+import LibraryItem from './LibraryItem'
 import classes from './library.module.css'
 
 const Library = () => {
@@ -72,11 +71,11 @@ const Library = () => {
 													key={history.id}
 													className={`${classes.grid_item}`}
 												>
-													<LibraryHistoryItem history={history} />
+													<LibraryItem meme={history} />
 												</div>
 											))
 										) : (
-											<div className='text-[#f1f1f1] font-bold'>
+											<div className='text-[#f1f1f1] font-bold pb-4 text-lg'>
 												Ничего не найдено :(
 											</div>
 										)}
@@ -104,11 +103,11 @@ const Library = () => {
 								) : likedData && likedData.length ? (
 									likedData.map((liked: IMemes) => (
 										<div key={liked.id} className={`${classes.grid_item}`}>
-											<LibraryLikedItem liked={liked} />
+											<LibraryItem meme={liked} />
 										</div>
 									))
 								) : (
-									<div className='text-[#f1f1f1] font-bold'>
+									<div className='text-[#f1f1f1] font-bold pb-4 text-lg'>
 										Ничего не найдено :(
 									</div>
 								)}

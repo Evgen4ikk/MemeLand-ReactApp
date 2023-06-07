@@ -166,6 +166,11 @@ export const memeAPI = createApi({
 			query: () => ({
 				url: '/history',
 			}),
+			providesTags: () => [
+				{
+					type: 'meme',
+				},
+			],
 		}),
 		AddToHistory: build.mutation<IMemesHistory, IMemesHistory>({
 			query: meme => ({
@@ -173,6 +178,30 @@ export const memeAPI = createApi({
 				method: 'POST',
 				body: meme,
 			}),
+		}),
+		RemoveHistoryMeme: build.mutation<IMemesHistory, IMemesHistory>({
+			query: meme => ({
+				url: `/history/${meme.id}`,
+				method: 'DELETE',
+				body: meme,
+			}),
+			invalidatesTags: () => [
+				{
+					type: 'meme',
+				},
+			],
+		}),
+		ClearAllHistory: build.mutation<any, any>({
+			query: (meme) => ({
+				url: '/history',
+				method: 'DELETE',
+				body: meme
+			}),
+			invalidatesTags: () => [
+				{
+					type: 'meme',
+				},
+			],
 		}),
 	}),
 })

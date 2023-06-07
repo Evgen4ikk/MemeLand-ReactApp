@@ -16,18 +16,18 @@ const memesSlice = createSlice({
   name: 'memes',
   initialState,
   reducers: {
-    incrementLikes: (state, action: PayloadAction<number>) => {
-      const meme = state.memes.find((meme) => meme.id === action.payload);
-      if (meme) {
-        meme.likes++;
-      }
-    },
-    decrementLikes: (state, action: PayloadAction<number>) => {
-      const meme = state.memes.find((meme) => meme.id === action.payload);
-      if (meme) {
-        meme.likes--;
-      }
-    },
+    // incrementLikes: (state, action: PayloadAction<number>) => {
+    //   const meme = state.memes.find((meme) => meme.id === action.payload);
+    //   if (meme) {
+    //     meme.likes++;
+    //   }
+    // },
+    // decrementLikes: (state, action: PayloadAction<number>) => {
+    //   const meme = state.memes.find((meme) => meme.id === action.payload);
+    //   if (meme) {
+    //     meme.likes--;
+    //   }
+    // },
   },
 });
 
