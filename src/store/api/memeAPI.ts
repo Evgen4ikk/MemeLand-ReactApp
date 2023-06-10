@@ -32,10 +32,11 @@ export const memeAPI = createApi({
 				},
 			],
 		}),
-		deleteMeme: build.mutation({
+		deleteMeme: build.mutation<IMemes, IMemes>({
 			query: meme => ({
 				url: `/memes/${meme.id}`,
 				method: 'DELETE',
+				body: meme,
 			}),
 			invalidatesTags: () => [
 				{

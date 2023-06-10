@@ -13,8 +13,6 @@ const MemeItem: React.FC<IMemeItem> = ({ meme }) => {
 
 	const { data: myProfile } = userAPI.useFetchProfileDataQuery('')
 
-	const [deleteMeme, response] = memeAPI.useDeleteMemeMutation()
-
 	if (meme.myMeme === true) {
 		return (
 			<div className='rounded-lg overflow-hidden w-[320px] h-[290px]'>

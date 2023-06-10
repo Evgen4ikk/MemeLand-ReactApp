@@ -8,7 +8,7 @@ import { IMemes, IMemesHistory } from '../../types/IMemes'
 import classes from './home.module.css'
 
 const Home: FC = () => {
-	const { isLoading, data: memes } = memeAPI.useFetchAllMemesQuery('')
+	const { isLoading, data: memes} = memeAPI.useFetchAllMemesQuery('')
 	const [loading, setLoading] = useState(true)
 	const { search } = useContext(AuthContext)
 	const { data: searchMeme } = memeAPI.useSearchMemesQuery(search)

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { memeAPI } from '../store/api/memeAPI'
 import { userAPI } from '../store/api/userAPI'
+import { IMemes } from '../types/IMemes'
 
 interface MemeSubProps {
 	memeId: number
@@ -16,11 +17,18 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 	// Получаем данные пользователя
 	const { data: user } = userAPI.useFetchUserIdMemeQuery(userId)
 
+	const [deleteMeme] = memeAPI.useDeleteMemeMutation()
+
+	const handleDeleteMeme = async () => {
+		await deleteMeme({ id: memeId } as IMemes)
+	}
+
 	// Получаем данные моего профиля
 	const { data: myProfile } = userAPI.useFetchProfileDataQuery('')
 
 	// Получаем список подписок
-	const { data: subscriptions, refetch } = userAPI.useFetchSubscriptionsQuery('')
+	const { data: subscriptions, refetch } =
+		userAPI.useFetchSubscriptionsQuery('')
 
 	// Функция подписки на пользователя
 	const [subOnUser] = userAPI.useSubUserMutation()
@@ -58,39 +66,81 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 
 	return (
 		<div className='flex'>
-			<div className='px-2 py-1'>
-				<Link to={`/user/${data?.userId}`}>
-					<Avatar src={user && user[0]?.avatar} />
-				</Link>
-			</div>
-			<div className='ml-2 mr-7'>
-				<div className='text-[#AAAAAA] text-[14px]'>
-					<Link
-						to={`/user/${data?.userId}`}
-						className='text-[#f1f1f1] text-base font-bold'
-					>
-						{data?.author}
-					</Link>
-					<div>{user?.[0]?.subscribers} подписчиков</div>
-				</div>
-			</div>
-			<div className='flex items-center'>
-				{!isSub ? (
-					<button
-						onClick={handleSub}
-						className='h-[36px] px-4 text-sm bg-white text-[#0f0f0f] rounded-[18px] font-semibold cursor-pointer hover:bg-[#d9d9d9]'
-					>
-						Подписаться
-					</button>
-				) : (
-					<button
-						onClick={handleUnSub}
-						className='h-[36px] px-4 text-sm bg-[#333] text-[#f1f1f1] rounded-[18px] font-semibold cursor-pointer hover:bg-[#454649]'
-					>
-						Вы подписаны
-					</button>
-				)}
-			</div>
+			{data?.myMeme ? (
+				<>
+					<>
+						<div className='px-2 py-1'>
+							<Link to={'/myProfile'}>
+								<Avatar src={myProfile?.avatar} />
+							</Link>
+						</div>
+						<div className='ml-2 mr-7'>
+							<div className='text-[#AAAAAA] text-[14px]'>
+								<Link
+									to={`/myProfile`}
+									className='text-[#f1f1f1] text-base font-bold'
+								>
+									{myProfile?.username}
+								</Link>
+								<div>{myProfile?.subscribers} подписчиков</div>
+							</div>
+						</div>
+						<div className='flex items-center'>
+							<Link to='/myProfile'>
+								<button className='h-[36px] px-4 text-sm bg-[#333] text-[#f1f1f1] rounded-[18px] font-semibold cursor-pointer hover:bg-[#454649]'>
+									Мой профиль
+								</button>
+							</Link>
+							<div className='pl-4'>
+								<button
+									className='h-[36px] px-4 text-sm bg-[#333] text-[#f1f1f1] rounded-[18px] font-semibold cursor-pointer hover:bg-[#454649]'
+									onClick={handleDeleteMeme}
+								>
+									Удалить видео
+								</button>
+							</div>
+						</div>
+					</>
+				</>
+			) : (
+				<>
+					<>
+						<div className='px-2 py-1'>
+							<Link to={`/user/${data?.userId}`}>
+								<Avatar src={user && user[0]?.avatar} />
+							</Link>
+						</div>
+						<div className='ml-2 mr-7'>
+							<div className='text-[#AAAAAA] text-[14px]'>
+								<Link
+									to={`/user/${data?.userId}`}
+									className='text-[#f1f1f1] text-base font-bold'
+								>
+									{data?.author}
+								</Link>
+								<div>{user?.[0]?.subscribers} подписчиков</div>
+							</div>
+						</div>
+						<div className='flex items-center'>
+							{!isSub ? (
+								<button
+									onClick={handleSub}
+									className='h-[36px] px-4 text-sm bg-white text-[#0f0f0f] rounded-[18px] font-semibold cursor-pointer hover:bg-[#d9d9d9]'
+								>
+									Подписаться
+								</button>
+							) : (
+								<button
+									onClick={handleUnSub}
+									className='h-[36px] px-4 text-sm bg-[#333] text-[#f1f1f1] rounded-[18px] font-semibold cursor-pointer hover:bg-[#454649]'
+								>
+									Вы подписаны
+								</button>
+							)}
+						</div>
+					</>
+				</>
+			)}
 		</div>
 	)
 }
