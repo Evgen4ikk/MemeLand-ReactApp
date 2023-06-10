@@ -23,11 +23,8 @@ const App: FC = () => {
 	useEffect(() => {
 		const handleStart = () => setLoading(true)
 		const handleComplete = () => setLoading(false)
-
 		const timeout = setTimeout(handleComplete, 1000)
-
 		handleStart()
-
 		return () => {
 			clearTimeout(timeout)
 		}

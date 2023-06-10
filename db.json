@@ -29,7 +29,8 @@
       "image": "https://i.ytimg.com/vi/qsHeemDhubo/maxresdefault.jpg",
       "video": "https://youtu.be/pWJOxvcp7xk",
       "views": 0,
-      "likes": 112
+      "likes": 112,
+      "myMeme": false
     },
     {
       "id": 4,
@@ -59,7 +60,8 @@
       "image": "https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/7b7a8285df31b1e61bfb_lak1ll_92186164042_4931078351/thumb/custom-9b5f4d8e-d5be-4714-8e74-c1995834c8c5-640x360.jpeg",
       "video": "https://youtu.be/V1YmrIn1uiI",
       "views": 0,
-      "likes": 61
+      "likes": 61,
+      "myMeme": false
     },
     {
       "id": 7,
@@ -253,42 +255,6 @@
       "video": "https://youtu.be/3axFC8wYjB8",
       "views": 0,
       "id": 1
-    },
-    {
-      "memeId": 4,
-      "author": "MusicMonkey",
-      "image": "https://i.ytimg.com/vi/FIE84TeDOK8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgYSg_MA8=&amp;rs=AOn4CLC4QLs5_GfgX9Yyj-UahTjwc-mmSA",
-      "likes": 53,
-      "myMeme": false,
-      "name": "Обращение к шароёбам",
-      "userId": 4,
-      "video": "https://www.youtube.com/watch?v=4Qx5n6_W_24",
-      "views": 0,
-      "id": 2
-    },
-    {
-      "memeId": 8,
-      "author": "FoodieFrog",
-      "image": "https://a.d-cd.net/nKBIHZhlFgJVdWz8-URPP-omY4M-1920.jpg",
-      "likes": 2133,
-      "myMeme": false,
-      "name": "Миша все х***я давай по новой",
-      "userId": 8,
-      "video": "https://youtu.be/IkCh8VfN2d4",
-      "views": 0,
-      "id": 3
-    },
-    {
-      "memeId": 1,
-      "author": "PixelPenguin",
-      "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
-      "likes": 2033,
-      "myMeme": false,
-      "name": "Дверь мне запилил",
-      "userId": 1,
-      "video": "https://youtu.be/WnhjDV5ZUL0",
-      "views": 0,
-      "id": 4
     }
   ],
   "myProfile": {

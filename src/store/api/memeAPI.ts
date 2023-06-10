@@ -55,6 +55,14 @@ export const memeAPI = createApi({
 				},
 			],
 		}),
+		searchMemes: build.query<IMemes[], string>({
+			query: (search: string) => ({
+				url: '/memes',
+				params: {
+					q: search,
+				},
+			}),
+		}),
 		fetchMemeId: build.query<IMemes, number>({
 			query: (memeId: number) => ({
 				url: `/memes/${memeId}`,
@@ -145,17 +153,32 @@ export const memeAPI = createApi({
 				method: 'POST',
 				body: meme,
 			}),
+			invalidatesTags: () => [
+				{
+					type: 'meme',
+				},
+			],
 		}),
 		unLikedMeme: build.mutation<IMemes, number | undefined>({
 			query: (id: number) => ({
 				url: `/liked/${id}`,
 				method: 'DELETE',
 			}),
+			invalidatesTags: () => [
+				{
+					type: 'meme',
+				},
+			],
 		}),
 		fetchLiked: build.query<any, string>({
 			query: () => ({
 				url: '/liked',
 			}),
+			providesTags: () => [
+				{
+					type: 'meme',
+				},
+			],
 		}),
 		fetchMyMemes: build.query<IMemes[], string>({
 			query: () => ({
@@ -191,17 +214,16 @@ export const memeAPI = createApi({
 				},
 			],
 		}),
-		ClearAllHistory: build.mutation<any, any>({
-			query: (meme) => ({
-				url: '/history',
-				method: 'DELETE',
-				body: meme
-			}),
+		clearAllHistory: build.mutation<void, void>({
+      query: () => ({
+        url: '/history',
+        method: 'DELETE',
+      }),
 			invalidatesTags: () => [
 				{
 					type: 'meme',
 				},
 			],
-		}),
+    }),
 	}),
 })

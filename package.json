@@ -20,6 +20,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-redux": "^7.1.25",
     "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.4.0",
     "emoji-mart": "^5.5.2",
     "emoji-picker-react": "^4.4.9",
     "localforage": "^1.10.0",
