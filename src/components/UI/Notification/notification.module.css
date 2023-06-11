@@ -1,0 +1,16 @@
+.container {
+  scrollbar-width: thin;
+  scrollbar-color: #282828 transparent;
+}
+
+.container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #aaaaaa;
+}

@@ -7,6 +7,8 @@ import {
 } from 'react-icons/ai'
 import { memeAPI } from '../store/api/memeAPI'
 import { IMemes } from '../types/IMemes'
+import { useActions } from '../hooks/useActions'
+import { INotification } from '../types/INotification'
 
 interface MemeLikesProps {
 	memeId: number
@@ -24,7 +26,21 @@ const MemeLikes: React.FC<MemeLikesProps> = ({ memeId }) => {
 	const [likedMeme] = memeAPI.useLikedMemeMutation()
 	const [unLikedMeme] = memeAPI.useUnLikedMemeMutation()
 	const [updateMeme] = memeAPI.useUpdateMemeMutation()
-	
+
+	const { addNotification } = useActions()
+
+	const LikeNotification = {
+		id: Date.now(),
+		meme: data,
+		description: `Вы поставили лайк на видео "${data?.name}"`,
+	} as INotification
+
+	const DislikeNotification = {
+		id: Date.now(),
+		meme: data,
+		description: `Вы поставили дизлайк на видео "${data?.name}"`,
+	} as INotification
+
 	const handleUpdateMeme = (meme: IMemes) => {
 		updateMeme(meme)
 	}
@@ -37,6 +53,7 @@ const MemeLikes: React.FC<MemeLikesProps> = ({ memeId }) => {
 			await handleUpdateMeme(updatedMeme)
 		}
 		setIsLiked(false)
+		addNotification(DislikeNotification)
 		await unLikedMeme(data?.id)
 	}
 
@@ -60,6 +77,7 @@ const MemeLikes: React.FC<MemeLikesProps> = ({ memeId }) => {
 				likes: data?.likes + 1,
 				myMeme: true,
 			} as IMemes)
+			addNotification(LikeNotification)
 			setIsLiked(true)
 			setDisliked(false)
 		} else {
@@ -76,6 +94,7 @@ const MemeLikes: React.FC<MemeLikesProps> = ({ memeId }) => {
 				likes: data?.likes + 1,
 				myMeme: false,
 			} as IMemes)
+			addNotification(LikeNotification)
 			setIsLiked(true)
 			setDisliked(false)
 		}

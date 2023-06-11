@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { memeAPI } from '../store/api/memeAPI'
 import { userAPI } from '../store/api/userAPI'
 import { IMemes } from '../types/IMemes'
+import { useActions } from '../hooks/useActions'
+import { INotification } from '../types/INotification'
 
 interface MemeSubProps {
 	memeId: number
@@ -35,6 +37,22 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 
 	// Функция отписки от пользователя
 	const [unSubUser] = userAPI.useUnSubUserMutation()
+
+	const { addNotification } = useActions()
+
+	const subUserNotification = {
+		id: Date.now(),
+		user: user,
+		description: `Вы подписались на пользователя "${user?.[0]?.username}"`,
+	} as INotification
+
+	const unSubUserNotification = {
+		id: Date.now(),
+		user: user,
+		description: `Вы отписались от пользователя "${user?.[0]?.username}"`,
+	} as INotification
+
+
 	// Обработчик подпискиx
 	const handleSub = async () => {
 		await subOnUser({
@@ -43,13 +61,14 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 			avatar: user?.[0]?.avatar,
 			subscribers: user?.[0]?.subscribers,
 		})
-
+		addNotification(subUserNotification)
 		setIsSub(true)
 	}
 
 	// Обработчик отписки
 	const handleUnSub = async () => {
 		await unSubUser(user?.[0]?.id)
+		addNotification(unSubUserNotification)
 		setIsSub(false)
 	}
 
@@ -63,6 +82,8 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 		setIsSub(subCheck())
 		refetch()
 	}, [subscriptions, user?.[0]?.id])
+
+	
 
 	return (
 		<div className='flex'>

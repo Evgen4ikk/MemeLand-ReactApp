@@ -5,7 +5,7 @@ import { AiOutlinePlusCircle, AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/context'
 import { userAPI } from '../store/api/userAPI'
-import Notifications from './Notifications'
+import Notifications from './UI/Notification/Notifications'
 
 const Navbar = () => {
 	const { data: profile } = userAPI.useFetchProfileDataQuery('')

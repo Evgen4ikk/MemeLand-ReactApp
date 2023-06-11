@@ -39,7 +39,8 @@
     "react-spring": "^9.7.1",
     "react-use": "^17.4.0",
     "redux-typescript": "^1.2.1",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -1,9 +1,9 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { memeAction } from '../store/slice/memeSlice'
+import { notificationAction } from '../store/slice/notificationSlice'
 
 const actions = {
-	...memeAction,
+	...notificationAction,
 }
 
 export const useActions = () => {
