@@ -1,6 +1,6 @@
 import { Avatar } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { memeAPI } from '../store/api/memeAPI'
 import { userAPI } from '../store/api/userAPI'
 import { IMemes } from '../types/IMemes'
@@ -13,6 +13,8 @@ interface MemeSubProps {
 }
 
 const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
+
+	const navigate = useNavigate()
 	// Получаем данные мема
 	const { data } = memeAPI.useFetchMemeIdQuery(memeId)
 
@@ -20,10 +22,6 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 	const { data: user } = userAPI.useFetchUserIdMemeQuery(userId)
 
 	const [deleteMeme] = memeAPI.useDeleteMemeMutation()
-
-	const handleDeleteMeme = async () => {
-		await deleteMeme({ id: memeId } as IMemes)
-	}
 
 	// Получаем данные моего профиля
 	const { data: myProfile } = userAPI.useFetchProfileDataQuery('')
@@ -52,6 +50,18 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 		description: `Вы отписались от пользователя "${user?.[0]?.username}"`,
 	} as INotification
 
+	const deleteMemeNotification = {
+		id: Date.now(),
+		meme: data,
+		description: `Вы удалили мем "${data?.name}"`,
+	} as INotification
+
+	const handleDeleteMeme = async () => {
+		await deleteMeme({ id: memeId } as IMemes).then(() => {
+			navigate('/')
+		})
+		addNotification(deleteMemeNotification)
+	}
 
 	// Обработчик подпискиx
 	const handleSub = async () => {

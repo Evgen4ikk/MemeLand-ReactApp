@@ -40,7 +40,7 @@
       "image": "https://i.ytimg.com/vi/FIE84TeDOK8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgYSg_MA8=&amp;rs=AOn4CLC4QLs5_GfgX9Yyj-UahTjwc-mmSA",
       "video": "https://www.youtube.com/watch?v=4Qx5n6_W_24",
       "views": 0,
-      "likes": 53
+      "likes": 54
     },
     {
       "id": 5,
@@ -91,7 +91,7 @@
       "image": "https://i.ytimg.com/vi/FDnJ1FPYP1Y/maxresdefault.jpg",
       "video": "https://youtu.be/pqRc1Y1vAh4",
       "views": 0,
-      "likes": 4812
+      "likes": 4813
     },
     {
       "id": 10,
@@ -102,16 +102,6 @@
       "video": "https://youtu.be/DWMqnggznRQ",
       "views": 0,
       "likes": 4553
-    },
-    {
-      "myMeme": true,
-      "name": "Троллейбус горит ? Ну и хер с ним! У меня есть автобус!",
-      "image": "https://avatars.mds.yandex.net/i?id=041b2bf8c18ff0a48b76ecdc0e23f29c2b56572e-9149598-images-thumbs&n=13",
-      "video": "https://youtu.be/9RS9t1oXEXA",
-      "author": "User",
-      "views": 0,
-      "likes": 0,
-      "id": 11
     }
   ],
   "users": [
@@ -236,21 +226,94 @@
       "subscribers": "76 тыс."
     }
   ],
-  "comments": [],
-  "answers": [],
-  "subscriptions": [
+  "comments": [
     {
-      "id": 9,
-      "username": "FitnessFeline",
-      "avatar": "https://66.media.tumblr.com/7d11f95cecb93223a649c38583195a8c/tumblr_pc16npB7Hu1rsfjkqo1_1280.png",
-      "subscribers": "1,62 млн"
-    },
-    {
-      "id": 10
+      "memeId": "4",
+      "username": "User",
+      "title": "АХАХАХХА ЛОХ😂😂😂😂😂",
+      "time": "28.06.2023, 15:27:14",
+      "id": 1
     }
   ],
-  "liked": [],
+  "answers": [
+    {
+      "memeId": "4",
+      "commentId": 1,
+      "username": "User",
+      "title": "ВНАТУРЕ",
+      "time": "28.06.2023, 15:27:24",
+      "id": 1
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": 4,
+      "username": "MusicMonkey",
+      "avatar": "https://avatars.yandex.net/get-music-content/4382102/563616f3.a.17663910-1/m1000x1000?webp=false",
+      "subscribers": "18,2 тыс."
+    }
+  ],
+  "liked": [
+    {
+      "id": 4,
+      "userId": 4,
+      "author": "MusicMonkey",
+      "name": "Обращение к шароёбам",
+      "image": "https://i.ytimg.com/vi/FIE84TeDOK8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgYSg_MA8=&amp;rs=AOn4CLC4QLs5_GfgX9Yyj-UahTjwc-mmSA",
+      "video": "https://www.youtube.com/watch?v=4Qx5n6_W_24",
+      "views": 0,
+      "likes": 54,
+      "myMeme": false
+    },
+    {
+      "id": 9,
+      "userId": 9,
+      "author": "FitnessFeline",
+      "name": "Корова танцует под польскую песню",
+      "image": "https://i.ytimg.com/vi/FDnJ1FPYP1Y/maxresdefault.jpg",
+      "video": "https://youtu.be/pqRc1Y1vAh4",
+      "views": 0,
+      "likes": 4813,
+      "myMeme": false
+    }
+  ],
   "history": [
+    {
+      "memeId": 4,
+      "author": "MusicMonkey",
+      "image": "https://i.ytimg.com/vi/FIE84TeDOK8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgYSg_MA8=&amp;rs=AOn4CLC4QLs5_GfgX9Yyj-UahTjwc-mmSA",
+      "likes": 53,
+      "myMeme": false,
+      "name": "Обращение к шароёбам",
+      "userId": 4,
+      "video": "https://www.youtube.com/watch?v=4Qx5n6_W_24",
+      "views": 0,
+      "id": 2
+    },
+    {
+      "memeId": 9,
+      "author": "FitnessFeline",
+      "image": "https://i.ytimg.com/vi/FDnJ1FPYP1Y/maxresdefault.jpg",
+      "likes": 4812,
+      "myMeme": false,
+      "name": "Корова танцует под польскую песню",
+      "userId": 9,
+      "video": "https://youtu.be/pqRc1Y1vAh4",
+      "views": 0,
+      "id": 3
+    },
+    {
+      "memeId": 9,
+      "author": "FitnessFeline",
+      "image": "https://i.ytimg.com/vi/FDnJ1FPYP1Y/maxresdefault.jpg",
+      "likes": 4812,
+      "myMeme": false,
+      "name": "Корова танцует под польскую песню",
+      "userId": 9,
+      "video": "https://youtu.be/pqRc1Y1vAh4",
+      "views": 0,
+      "id": 4
+    },
     {
       "memeId": 2,
       "author": "GamerGorilla",
@@ -261,11 +324,23 @@
       "userId": 2,
       "video": "https://youtu.be/3axFC8wYjB8",
       "views": 0,
-      "id": 1
+      "id": 5
+    },
+    {
+      "memeId": 6,
+      "author": "ArticFox",
+      "image": "https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/7b7a8285df31b1e61bfb_lak1ll_92186164042_4931078351/thumb/custom-9b5f4d8e-d5be-4714-8e74-c1995834c8c5-640x360.jpeg",
+      "likes": 61,
+      "myMeme": false,
+      "name": "ЯРИК БОЧОК ПОТИК",
+      "userId": 6,
+      "video": "https://youtu.be/V1YmrIn1uiI",
+      "views": 0,
+      "id": 6
     }
   ],
   "myProfile": {
-    "username": "User",
+    "username": "Evgen44ik",
     "avatar": "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
     "subscribers": "0"
   }

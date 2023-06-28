@@ -30,6 +30,18 @@ export const userAPI = createApi({
 				url: '/myProfile',
 			}),
 		}),
+		updateProfile: build.mutation({
+			query: profile => ({
+				url: `/myProfile`,
+				method: 'PUT',
+				body: profile,
+			}),
+			invalidatesTags: () => [
+				{
+					type: 'user',
+				},
+			],
+		}),
 		subUser: build.mutation<IUsers, IUsers>({
 			query: user => ({
 				url: '/subscriptions',

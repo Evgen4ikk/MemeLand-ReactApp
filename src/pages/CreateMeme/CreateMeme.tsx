@@ -29,16 +29,16 @@ const CreateMeme: React.FC = () => {
 	const creaateMemeNotification = {
 		id: Date.now(),
 		meme: meme,
-		description: `Поздравляем вы созадли новый мем!`,
+		description: `Поздравляем вы созадли новый мем "${meme.name}"`,
 	} as INotification
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault()
-		createMeme(meme).then(() => {
+		await createMeme(meme).then(() => {
 			setMeme(defaultValue)
 			navigate('/')
 		})
-		addNotification(creaateMemeNotification)
+		await addNotification(creaateMemeNotification)
 	}
 
 	useEffect(() => {

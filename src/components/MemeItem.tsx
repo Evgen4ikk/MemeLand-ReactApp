@@ -1,6 +1,5 @@
 import { Avatar } from '@mui/material'
 import { Link } from 'react-router-dom'
-import { memeAPI } from '../store/api/memeAPI'
 import { userAPI } from '../store/api/userAPI'
 import { IMemes } from '../types/IMemes'
 

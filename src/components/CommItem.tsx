@@ -1,7 +1,7 @@
 import { Avatar, IconButton } from '@mui/material'
 import React, { useRef, useState } from 'react'
 import { BsPencil, BsTrash } from 'react-icons/bs'
-import { GoKebabVertical } from 'react-icons/go'
+import { CiMenuKebab } from 'react-icons/ci'
 import { useClickAway } from 'react-use'
 import { memeAPI } from '../store/api/memeAPI'
 import { IComments } from '../types/IComments'
@@ -46,7 +46,7 @@ const CommItem: React.FC<CommItemProps> = ({ memeId, myProfile, comments }) => {
 								setIsMenuOpen(!isMenuOpen)
 							}}
 						>
-							<GoKebabVertical style={{ color: '#f1f1f1' }} size={16} />
+							<CiMenuKebab style={{ color: '#f1f1f1' }} size={16} />
 						</IconButton>
 					</div>
 					{selectedCommentId === comment.id && isMenuOpen ? (

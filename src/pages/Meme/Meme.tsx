@@ -10,7 +10,6 @@ import { memeAPI } from '../../store/api/memeAPI'
 import { userAPI } from '../../store/api/userAPI'
 
 const Meme: React.FC = () => {
-  
 	const { id } = useParams<{ id: any }>()
 
 	const { data: memeData } = memeAPI.useFetchMemeIdQuery(id)

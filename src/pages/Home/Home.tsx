@@ -59,7 +59,7 @@ const Home: FC = () => {
 				<CustomProgressBar />
 			) : (
 				<div className={`${classes.container} mx-auto pl-6`}>
-					{search && searchMeme && searchMeme.length === 0 && (
+					{search && searchMeme?.length === 0 && (
 						<div className='text-[#f1f1f1] text-4xl relative'>
 							<div className='absolute w-[350px] left-[-150px] top-[200px]'>Ничего не найдено :(</div>
 						</div>
