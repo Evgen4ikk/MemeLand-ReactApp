@@ -233,6 +233,13 @@
       "title": "АХАХАХХА ЛОХ😂😂😂😂😂",
       "time": "28.06.2023, 15:27:14",
       "id": 1
+    },
+    {
+      "memeId": "7",
+      "username": "Evgen44ik",
+      "title": "Hello mir",
+      "time": "01.07.2023, 00:50:47",
+      "id": 2
     }
   ],
   "answers": [
@@ -337,11 +344,23 @@
       "video": "https://youtu.be/V1YmrIn1uiI",
       "views": 0,
       "id": 6
+    },
+    {
+      "memeId": 1,
+      "author": "PixelPenguin",
+      "image": "https://i.ytimg.com/vi/aT23YKDfBr8/maxresdefault.jpg",
+      "likes": 2034,
+      "myMeme": false,
+      "name": "Дверь мне запилил",
+      "userId": 1,
+      "video": "https://youtu.be/WnhjDV5ZUL0",
+      "views": 0,
+      "id": 7
     }
   ],
   "myProfile": {
     "username": "Evgen44ik",
-    "avatar": "https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg",
+    "avatar": "https://avatars.mds.yandex.net/i?id=0ca056ec041ace02baadb7d69780662991cc5b57-5519673-images-thumbs&n=13",
     "subscribers": "0"
   }
 }

@@ -108,6 +108,18 @@ export const memeAPI = createApi({
 				},
 			],
 		}),
+		updateComment: build.mutation<IComments, IComments>({
+			query: comment => ({
+				url: `/comments/${comment.id}`,
+				method: 'PUT',
+				body: comment,
+			}),
+			invalidatesTags: () => [
+				{
+					type: 'meme',
+				},
+			],
+		}),
 		fetchAnswersMemeId: build.query<IAnswers[], number>({
 			query: (id: number) => ({
 				url: `/memes/${id}/answers`,
