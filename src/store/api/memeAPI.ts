@@ -108,7 +108,7 @@ export const memeAPI = createApi({
 				},
 			],
 		}),
-		updateComment: build.mutation<IComments, IComments>({
+		updateComment: build.mutation({
 			query: comment => ({
 				url: `/comments/${comment.id}`,
 				method: 'PUT',

@@ -48,17 +48,20 @@ const CommItem: React.FC<CommItemProps> = ({ memeId, myProfile, comments }) => {
 		newComm: string | undefined,
 		commentId: number
 	) => {
+		console.log(commentId, newComm)
 		if (!newComm) {
 			return
 		}
 
-		const updatedComm = { ...comments, title: newComm } as IComments
-		await updateComm(updatedComm)
-		window.location.reload()
+		const updatedComment = comments?.find(comment => comment.id === commentId)
+		if (updatedComment) {
+			const updatedCommentWithNewTitle = { ...updatedComment, title: newComm }
+			await updateComm(updatedCommentWithNewTitle)
 
-		const updatedEditCommMap = { ...editCommMap }
-		updatedEditCommMap[commentId] = false
-		setEditCommMap(updatedEditCommMap)
+			const updatedEditCommMap = { ...editCommMap }
+			updatedEditCommMap[commentId] = false
+			setEditCommMap(updatedEditCommMap)
+		}
 	}
 
 	const handleDeleteComm = async (commentId: number) => {
@@ -66,9 +69,13 @@ const CommItem: React.FC<CommItemProps> = ({ memeId, myProfile, comments }) => {
 	}
 
 	const handleEditComm = (commentId: number) => {
+		setSelectedCommentId(commentId)
 		const updatedEditCommMap = { ...editCommMap }
 		updatedEditCommMap[commentId] = true
 		setEditCommMap(updatedEditCommMap)
+		setCommValue(
+			comments?.find(comment => comment.id === commentId)?.title || ''
+		)
 		setIsMenuOpen(false)
 	}
 
@@ -79,13 +86,22 @@ const CommItem: React.FC<CommItemProps> = ({ memeId, myProfile, comments }) => {
 	}
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setCommValue(event.target.value)
-	}
+		const newComm = event.target.value;
+		setCommValue(newComm);
+		setDisableSend(
+			newComm.trim().length === 0 || newComm === comments?.find((comment) => comment.id === selectedCommentId)?.title
+		);
+	};
 
 	return (
 		<div className='flex flex-col-reverse'>
 			{comments?.map((comment: IComments) => (
-				<div key={comment.id} className='my-6 flex relative'>
+				<div
+					key={comment.id}
+					className={`${
+						editCommMap[comment.id] ? 'mt-6 relative' : 'mt-6 flex relative'
+					}`}
+				>
 					{editCommMap[comment.id] ? (
 						<>
 							<div className='flex'>
@@ -97,13 +113,14 @@ const CommItem: React.FC<CommItemProps> = ({ memeId, myProfile, comments }) => {
 										/>
 									</Link>
 								</div>
+								<div className='w-full'>
 								<input
-									className={`outline-none bg-inherit border-b border-white
-										text-[#f1f1f1] placeholder-[#aaa] py-[2px] px-1 w-full`}
-									placeholder='Введите комментарий'
-									value={commValue}
-									onChange={handleInputChange}
-								/>
+                    className="outline-none bg-inherit border-b border-white text-[#f1f1f1] placeholder-[#aaa] py-[2px] px-1 w-full"
+										placeholder="Введите комментарий"
+										value={editCommMap[comment.id] ? commValue : comment.title}
+										onChange={handleInputChange}
+                  />
+								</div>
 							</div>
 							<div className='flex justify-between items-center'>
 								<div className='rounded-full ml-16 text-[#f1f1f1] hover:bg-[#272727]'>
@@ -134,13 +151,13 @@ const CommItem: React.FC<CommItemProps> = ({ memeId, myProfile, comments }) => {
 											Отмена
 										</button>
 										<button
-											type='submit'
-											disabled={disableSend}
+											disabled={disableSend || selectedCommentId !== comment.id}
+											onClick={() => handleUpdateComm(commValue, comment.id)}
 											className={`${
 												disableSend
 													? 'text-[#717171] bg-[#272727] px-4 py-2 rounded-full ml-2'
 													: 'bg-[#3ea6ff] text-[#0f0f0f] px-4 py-2 rounded-full ml-2 hover:bg-[#65b8ff]'
-											} `}
+											}`}
 										>
 											Изменить комментарий
 										</button>
