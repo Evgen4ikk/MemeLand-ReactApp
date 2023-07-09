@@ -3,7 +3,9 @@ import { FC } from 'react'
 import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { memeAPI } from '../../store/api/memeAPI'
+import { userAPI } from '../../store/api/userAPI'
 import { IMemesHistory } from '../../types/IMemes'
+import { formatCount } from '../../utils/formatViewsCount'
 
 interface HistoryItemProps {
 	historyMeme: IMemesHistory
@@ -11,6 +13,8 @@ interface HistoryItemProps {
 
 const HistoryItem: FC<HistoryItemProps> = ({ historyMeme }) => {
 	const [deleteMeme] = memeAPI.useRemoveHistoryMemeMutation()
+
+	const { data: user } = userAPI.useFetchUserIdMemeQuery(historyMeme.userId)
 
 	const handleDeleteMeme = async (id: number) => {
 		await deleteMeme({ id: id } as IMemesHistory)
@@ -36,10 +40,12 @@ const HistoryItem: FC<HistoryItemProps> = ({ historyMeme }) => {
 							to={`/user/${historyMeme.userId}`}
 							className='hover:text-[#f1f1f1] transition-colors'
 						>
-							<span>{historyMeme.author}</span>
+							<span>{user?.[0]?.username}</span>
 						</Link>
 						<span className='px-1'>•</span>
-						<span className=''>{historyMeme.views} просмотров</span>
+						<span className=''>
+							{formatCount(historyMeme.views)} просмотров
+						</span>
 					</div>
 				</div>
 			</div>

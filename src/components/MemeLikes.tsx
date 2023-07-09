@@ -5,10 +5,11 @@ import {
 	AiOutlineDislike,
 	AiOutlineLike,
 } from 'react-icons/ai'
+import { useActions } from '../hooks/useActions'
 import { memeAPI } from '../store/api/memeAPI'
 import { IMemes } from '../types/IMemes'
-import { useActions } from '../hooks/useActions'
 import { INotification } from '../types/INotification'
+import { formatCount } from '../utils/formatViewsCount'
 
 interface MemeLikesProps {
 	memeId: number
@@ -69,7 +70,6 @@ const MemeLikes: React.FC<MemeLikesProps> = ({ memeId }) => {
 			await likedMeme({
 				id: data?.id,
 				userId: data?.userId,
-				author: data?.author,
 				name: data?.name,
 				image: data?.image,
 				video: data?.video,
@@ -86,7 +86,6 @@ const MemeLikes: React.FC<MemeLikesProps> = ({ memeId }) => {
 			await likedMeme({
 				id: data?.id,
 				userId: data?.userId,
-				author: data?.author,
 				name: data?.name,
 				image: data?.image,
 				video: data?.video,
@@ -126,18 +125,22 @@ const MemeLikes: React.FC<MemeLikesProps> = ({ memeId }) => {
 				{!isLiked ? (
 					<button
 						onClick={handleLiked}
-						className='flex items-center px-2 py-1 border-e border-[#525252]'
+						className='flex items-center px-2 py-[6px] border-e border-[#525252] whitespace-nowrap'
 					>
 						<AiOutlineLike />
-						<span className='pl-2 pr-1'>{data?.likes}</span>
+						<span className='pl-2 pr-1 font-medium text-sm'>
+							{formatCount(data?.likes)}
+						</span>
 					</button>
 				) : (
 					<button
 						onClick={handleUnLiked}
-						className='flex items-center px-2 py-1 rounded-s-[40px] border-e border-[#525252]'
+						className='flex items-center px-2 py-[6px] rounded-s-[40px] border-e border-[#525252] whitespace-nowrap'
 					>
 						<AiFillLike />
-						<span className='pl-2 pr-1'>{data?.likes}</span>
+						<span className='pl-2 pr-1 font-medium text-sm'>
+							{formatCount(data?.likes)}
+						</span>
 					</button>
 				)}
 			</div>

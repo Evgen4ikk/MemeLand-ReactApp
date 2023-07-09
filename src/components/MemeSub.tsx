@@ -147,7 +147,7 @@ const MemeSub: React.FC<MemeSubProps> = ({ memeId, userId }) => {
 									to={`/user/${data?.userId}`}
 									className='text-[#f1f1f1] text-base font-bold'
 								>
-									{data?.author}
+									{user?.[0]?.username}
 								</Link>
 								<div>{user?.[0]?.subscribers} подписчиков</div>
 							</div>

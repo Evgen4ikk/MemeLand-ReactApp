@@ -5,17 +5,6 @@ import LikedItem from './LikedItem'
 const Liked = () => {
 	const { data: liked, isLoading } = memeAPI.useFetchLikedQuery('')
 
-	// const [removeLikedMeme] = memeAPI.useRemoveHistoryMemeMutation()
-
-	// const handleLiked = async () => {
-	// 	if (history) {
-	// 		const deletePromises = history.map(item =>
-	// 			removeHistoryMeme({ id: item.id }as IMemesHistory)
-	// 		)
-	// 		await Promise.all(deletePromises)
-	// 	}
-	// }
-
 	return (
 		<div className='max-w-[1080px] mx-auto text-white'>
 			<div className='border-b border-[#3f3f3f] pb-4 mb-4'>

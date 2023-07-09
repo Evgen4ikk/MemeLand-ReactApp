@@ -2,6 +2,7 @@ import { Avatar } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { userAPI } from '../store/api/userAPI'
 import { IMemes } from '../types/IMemes'
+import { formatCount } from '../utils/formatViewsCount'
 
 interface IMemeItem {
 	meme: IMemes
@@ -71,9 +72,9 @@ const MemeItem: React.FC<IMemeItem> = ({ meme }) => {
 								to={`/user/${meme.userId}`}
 								className='hover:text-[#f1f1f1]'
 							>
-								{meme.author}
+								{user?.[0]?.username}
 							</Link>
-							<div>{meme.views} просмотров</div>
+							<div>{formatCount(meme.views)} просмотров</div>
 						</div>
 					</div>
 				</div>

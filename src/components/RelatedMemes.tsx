@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { memeAPI } from '../store/api/memeAPI'
 import { IMemes, IMemesHistory } from '../types/IMemes'
 import RelatedMemeItem from './RelatedMemeItem'
@@ -8,17 +8,26 @@ interface RelatedMemesProps {
 }
 
 const RelatedMemes: FC<RelatedMemesProps> = ({ memeId }) => {
-	const { isLoading, data } = memeAPI.useFetchAllMemesQuery('')
+	const { isLoading, data, refetch } = memeAPI.useFetchAllMemesQuery('')
 
 	const filteredMemes = data && data.filter(meme => meme.id !== memeId)
 
 	const [addToHistory] = memeAPI.useAddToHistoryMutation()
 
+	const [updateMeme] = memeAPI.useUpdateMemeMutation()
+
+	const handleUpdateMeme = (meme: IMemes) => {
+		updateMeme(meme)
+	}
+	const handleUpdateViews = async (meme: IMemes) => {
+		const updatedMeme = { ...meme, views: meme.views + 1 } as IMemes
+		await handleUpdateMeme(updatedMeme)
+	}
+
 	const handleHistory = async (meme: IMemes) => {
 		if (meme.myMeme === true) {
 			await addToHistory({
 				memeId: meme.id,
-				author: meme.author,
 				image: meme.image,
 				likes: meme.likes,
 				myMeme: true,
@@ -30,7 +39,6 @@ const RelatedMemes: FC<RelatedMemesProps> = ({ memeId }) => {
 		} else {
 			await addToHistory({
 				memeId: meme.id,
-				author: meme.author,
 				image: meme.image,
 				likes: meme.likes,
 				myMeme: false,
@@ -40,7 +48,12 @@ const RelatedMemes: FC<RelatedMemesProps> = ({ memeId }) => {
 				views: meme.views,
 			} as IMemesHistory)
 		}
+		handleUpdateViews(meme)
 	}
+
+	useEffect(() => {
+		refetch()
+	}, [data])
 
 	return (
 		<div>
@@ -53,7 +66,7 @@ const RelatedMemes: FC<RelatedMemesProps> = ({ memeId }) => {
 						className='pb-3'
 						onClick={() => handleHistory(meme)}
 					>
-						<RelatedMemeItem meme={meme} />
+						<RelatedMemeItem meme={meme}/>
 					</div>
 				))
 			) : (

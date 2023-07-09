@@ -3,7 +3,9 @@ import { FC } from 'react'
 import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { memeAPI } from '../../store/api/memeAPI'
+import { userAPI } from '../../store/api/userAPI'
 import { IMemes } from '../../types/IMemes'
+import { formatCount } from '../../utils/formatViewsCount'
 
 interface LikedItemProps {
 	likedMeme: IMemes
@@ -11,6 +13,8 @@ interface LikedItemProps {
 }
 
 const LikedItem: FC<LikedItemProps> = ({ likedMeme, index }) => {
+	const { data: user } = userAPI.useFetchUserIdMemeQuery(likedMeme.userId)
+
 	const [unLikedMeme] = memeAPI.useUnLikedMemeMutation()
 	const [updateMeme] = memeAPI.useUpdateMemeMutation()
 
@@ -45,18 +49,16 @@ const LikedItem: FC<LikedItemProps> = ({ likedMeme, index }) => {
 							to={`/user/${likedMeme.userId}`}
 							className='hover:text-[#f1f1f1] transition-colors'
 						>
-							<span>{likedMeme.author}</span>
+							<span>{user?.[0]?.username}</span>
 						</Link>
 						<span className='px-1'>•</span>
-						<span className=''>{likedMeme.views} просмотров</span>
+						<span className=''>{formatCount(likedMeme.views)} просмотров</span>
 					</div>
 				</div>
 			</div>
 			<div className='my-auto'>
 				<div className='rounded-full'>
-					<IconButton
-						onClick={handleUnLiked}
-					>
+					<IconButton onClick={handleUnLiked}>
 						<MdClose className='text-[#f1f1f1] ' />
 					</IconButton>
 				</div>

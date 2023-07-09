@@ -96,7 +96,7 @@ const Library = () => {
 								</Link>
 							</div>
 							<div
-								className={`${classes.container} mx-auto border-b border-[#3f3f3f] max-h-[485px] overflow-hidden`}
+								className={`${classes.container} mx-auto max-h-[485px] overflow-hidden`}
 							>
 								{isLoadingLiked ? (
 									<div>Загрузка...</div>

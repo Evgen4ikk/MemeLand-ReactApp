@@ -1,12 +1,16 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { userAPI } from '../../store/api/userAPI'
 import { IMemes } from '../../types/IMemes'
+import { formatCount } from '../../utils/formatViewsCount'
 
 interface LibraryItemProps {
 	meme: IMemes
 }
 
 const LibraryItem: FC<LibraryItemProps> = ({ meme }) => {
+	const { data: user } = userAPI.useFetchUserIdMemeQuery(meme.userId)
+
 	return (
 		<div className='rounded-lg overflow-hidden pb-3'>
 			<Link to={`/meme/${meme.id}`}>
@@ -25,9 +29,9 @@ const LibraryItem: FC<LibraryItemProps> = ({ meme }) => {
 					</Link>
 					<div className='text-[#AAAAAA] text-xs'>
 						<Link to={`/user/${meme.userId}`} className='hover:text-[#f1f1f1]'>
-							{meme.author}
+							{user?.[0]?.username}
 						</Link>
-						<div>{meme.views} просмотров</div>
+						<div>{formatCount(meme.views)} просмотров</div>
 					</div>
 				</div>
 			</div>
