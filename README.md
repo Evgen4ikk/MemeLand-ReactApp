@@ -1,4 +1,5 @@
 # MemeLand
+![](/preview.png)
 
 ## Getting start
 
